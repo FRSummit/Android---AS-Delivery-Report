@@ -26,5 +26,6 @@ public class ReportImageUpload extends Activity {
 
     public void goToSignatureHandler(View view) {
         startActivity(new Intent(this, SignatureUpload.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }

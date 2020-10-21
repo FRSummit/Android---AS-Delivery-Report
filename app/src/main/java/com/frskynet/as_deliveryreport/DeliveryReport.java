@@ -17,5 +17,6 @@ public class DeliveryReport extends Activity {
 
     public void deliveryReportSubmitHandler(View view) {
         startActivity(new Intent(this, ReportImageUpload.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }
