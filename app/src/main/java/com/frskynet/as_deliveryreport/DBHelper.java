@@ -44,6 +44,8 @@ class DBHelper extends SQLiteOpenHelper {
 
         QUERY = "CREATE TABLE IF NOT EXISTS DELIVERY_REPORT (" +
                                 "DELIVERY_REPORT_TABLE_ID VARCHAR(40) PRIMARY KEY," +
+                                "DELIVERY_MAN_ID VARCHAR(50)," +
+                                "ON_BEHALF_OF VARCHAR(50)," +
                                 "ORDER_NUMBER VARCHAR(50)," +
                                 "ORDER_BY VARCHAR(50)," +
                                 "ORDER_DATE VARCHAR(30)," +
