@@ -1,9 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReportImageUpload">
+    tools:context=".ReportImageUpload"
+    android:background="@drawable/report_input_background">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/report_image_upload_logo_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:id="@+id/delivery_report_logo_section_part_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/delivery_report_logo_section_part_1_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/as_cart_logo_icon"/>
+
+            <TextView
+                android:id="@+id/delivery_report_logo_section_part_1_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_name"
+                android:textColor="@color/main_text"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/delivery_report_logo_section_part_1_icon"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/delivery_report_logo_section_part_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/delivery_report_logo_section_part_1">
+
+            <ImageView
+                android:id="@+id/delivery_report_logo_section_part_2_icon"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/van_icon"/>
+
+            <TextView
+                android:id="@+id/delivery_report_logo_section_part_2_text"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="@string/main_text"
+                android:textColor="@color/main_text"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/delivery_report_logo_section_part_2_icon"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/report_image_upload_selection_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/report_image_upload_logo_section">
+
+        <Button
+            android:id="@+id/report_image_upload_select_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="cameraBtnHandler"
+            android:text="Camera" />
+
+        <Button
+            android:id="@+id/report_image_upload_select_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="galleryBtnHandler"
+            android:text="Gallery"
+            android:layout_toRightOf="@+id/report_image_upload_select_camera"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/report_image_upload_view_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/report_image_upload_selection_section">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="galleryBtnHandler"
+            android:text="Gallery"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/report_image_upload_submit_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/report_image_upload_view_section">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="galleryBtnHandler"
+            android:text="Gallery"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
