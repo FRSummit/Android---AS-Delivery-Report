@@ -20,4 +20,7 @@
     <string name="delivery_report_comment_input_hint">Your comment...</string>
 
     <string name="delivery_report_submit_btn_text">Save Report</string>
+
+    <string name="user_img_upload">Upload photo</string>
+    <string name="user_sign_img_upload">Upload signature</string>
 </resources>

@@ -303,9 +303,9 @@
                         android:text="@string/delivery_report_submit_btn_text"
                         android:textColor="#025377"
                         android:textSize="18dp"
-                        android:textStyle="bold"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
+                        android:textAllCaps="false"
                         android:onClick="deliveryReportSubmitHandler"
                         android:background="@drawable/report_submit_button_background"/>
                 </RelativeLayout>

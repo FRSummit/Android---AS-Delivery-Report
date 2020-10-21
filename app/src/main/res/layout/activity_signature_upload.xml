@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignatureUpload"
+    android:background="@drawable/report_input_background">
+
+    <RelativeLayout
+        android:id="@+id/report_image_upload_logo_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:id="@+id/report_image_upload_logo_section_part_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/report_image_upload_logo_section_part_1_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/as_cart_logo_icon"/>
+
+            <TextView
+                android:id="@+id/report_image_upload_logo_section_part_1_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/project_name"
+                android:textColor="@color/main_text"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/report_image_upload_logo_section_part_1_icon"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/report_image_upload_logo_section_part_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/report_image_upload_logo_section_part_1">
+
+            <ImageView
+                android:id="@+id/report_image_upload_logo_section_part_2_icon"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/van_icon"/>
+
+            <TextView
+                android:id="@+id/report_image_upload_logo_section_part_2_text"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="@string/main_text"
+                android:textColor="@color/main_text"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/report_image_upload_logo_section_part_2_icon"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/report_image_upload_logo_section">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/report_image_upload_user_signature_img_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/report_image_upload_user_img_section">
+
+                <TextView
+                    android:id="@+id/report_image_upload_usr_sign_img_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="@string/user_sign_img_upload"
+                    android:textColor="@color/input_text_color"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
+                <RelativeLayout
+                    android:id="@+id/report_image_upload_usr_sign_up_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_below="@+id/report_image_upload_usr_sign_img_text">
+
+                    <RelativeLayout
+                        android:id="@+id/report_image_upload_select_camera_usr_sign_btn_sec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/report_image_upload_select_camera_usr_sign"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="cameraBtnHandlerForSignature"
+                            android:text="Open Camera"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:textAllCaps="false"
+                            android:background="@drawable/report_submit_button_background"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/report_image_upload_select_camera_usr_sign_img_sec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:gravity="center"
+                        android:background="@drawable/demo_img_background"
+                        android:layout_below="@+id/report_image_upload_select_camera_usr_sign_btn_sec">
+
+                        <ImageView
+                            android:id="@+id/report_image_upload_select_camera_usr_sign_display_image"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:background="#00685353"
+                            android:layout_marginTop="10dp"
+                            app:srcCompat="@drawable/demo_img_background"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/report_image_upload_select_camera_usr_sign_submit_sec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:gravity="center"
+                        android:layout_below="@+id/report_image_upload_select_camera_usr_sign_img_sec">
+
+                        <Button
+                            android:id="@+id/report_image_upload_usr_sign_submit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="uploadSignatureToServer"
+                            android:text="Upload Signature"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:textAllCaps="false"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/report_submit_button_background"/>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
