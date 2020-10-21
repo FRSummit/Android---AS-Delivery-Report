@@ -26,4 +26,6 @@
 
     <string name="ops">Ops, You are not a delivery man. Please registration as Shasroy Leader or a delivery man.</string>
     <string name="visit_website">www.amarshasroy.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
