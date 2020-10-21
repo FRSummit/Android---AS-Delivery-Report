@@ -1,9 +1,308 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".DeliveryReport">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/delivery_report_logo_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/delivery_report_logo_section_part_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/delivery_report_logo_section_part_1_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/as_cart_logo_icon"/>
+
+                    <TextView
+                        android:id="@+id/delivery_report_logo_section_part_1_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/project_name"
+                        android:textColor="@color/main_text"
+                        android:textSize="40dp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/delivery_report_logo_section_part_1_icon"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/delivery_report_logo_section_part_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_below="@+id/delivery_report_logo_section_part_1">
+
+                    <ImageView
+                        android:id="@+id/delivery_report_logo_section_part_2_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/van_icon"/>
+
+                    <TextView
+                        android:id="@+id/delivery_report_logo_section_part_2_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="@string/main_text"
+                        android:textColor="@color/main_text"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/delivery_report_logo_section_part_2_icon"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/delivery_report_input_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="left">
+
+                <RelativeLayout
+                    android:id="@+id/delivery_report_on_behalf_of_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/delivery_report_on_behalf_of_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery_report_on_behalf_of_text"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:drawableRight="@drawable/required_icon"
+                        android:drawablePadding="10dp"/>
+
+                    <EditText
+                        android:id="@+id/delivery_report_on_behalf_of_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/delivery_report_on_behalf_of_input_hint"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_below="@+id/delivery_report_on_behalf_of_text"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/delivery_report_order_number_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/delivery_report_on_behalf_of_section">
+
+                    <TextView
+                        android:id="@+id/delivery_report_order_number_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery_report_order_number_text"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:drawableRight="@drawable/required_icon"
+                        android:drawablePadding="10dp"/>
+
+                    <EditText
+                        android:id="@+id/delivery_report_order_number_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/delivery_report_order_number_input_hint"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_below="@+id/delivery_report_order_number_text"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/delivery_report_order_by_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/delivery_report_order_number_section">
+
+                    <TextView
+                        android:id="@+id/delivery_report_order_by_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery_report_order_by_text"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:drawableRight="@drawable/required_icon"
+                        android:drawablePadding="10dp"/>
+
+                    <EditText
+                        android:id="@+id/delivery_report_order_by_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/delivery_report_order_by_input_hint"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_below="@+id/delivery_report_order_by_text"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/delivery_report_order_date_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/delivery_report_order_by_section">
+
+                    <TextView
+                        android:id="@+id/delivery_report_order_date_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery_report_order_date_text"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:drawableRight="@drawable/required_icon"
+                        android:drawablePadding="10dp"/>
+
+                    <EditText
+                        android:id="@+id/delivery_report_order_date_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/delivery_report_order_date_input_hint"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_below="@+id/delivery_report_order_date_text"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/delivery_report_delivery_date_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/delivery_report_order_date_section">
+
+                    <TextView
+                        android:id="@+id/delivery_report_delivery_date_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery_report_delivery_date_text"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:drawableRight="@drawable/required_icon"
+                        android:drawablePadding="10dp"/>
+
+                    <EditText
+                        android:id="@+id/delivery_report_delivery_date_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/delivery_report_delivery_date_input_hint"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_below="@+id/delivery_report_delivery_date_text"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/delivery_report_delivered_to_name_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/delivery_report_delivery_date_section">
+
+                    <TextView
+                        android:id="@+id/delivery_report_delivered_to_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery_report_delivery_to_name_text"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:drawableRight="@drawable/required_icon"
+                        android:drawablePadding="10dp"/>
+
+                    <EditText
+                        android:id="@+id/delivery_report_delivered_to_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/delivery_report_delivery_to_name_input_hint"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_below="@+id/delivery_report_delivered_to_text"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/delivery_report_comment_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/delivery_report_delivered_to_name_section">
+
+                    <TextView
+                        android:id="@+id/delivery_report_comment_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery_report_comment_text"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:drawableRight="@drawable/required_icon"
+                        android:drawablePadding="10dp"/>
+
+                    <EditText
+                        android:id="@+id/delivery_report_comment_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/delivery_report_comment_input_hint"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:layout_below="@+id/delivery_report_comment_text"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/delivery_report_submit_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:layout_below="@+id/delivery_report_comment_section">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery_report_submit_btn_text"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

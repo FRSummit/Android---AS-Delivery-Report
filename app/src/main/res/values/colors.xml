@@ -6,4 +6,7 @@
 
     <color name="main_background">#F6F6F6</color>
     <color name="main_text">#98C403</color>
+
+    <color name="input_section_background">#dedede</color>
+    <color name="input_text_color">#222</color>
 </resources>
