@@ -6,9 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".SubmitReport">
 
+    <include
+        android:id="@+id/common_logo_section"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        layout="@layout/common_logo"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Repost Submit"/>
+        android:text="Repost Submit"
+        android:layout_below="@+id/common_logo_section"/>
 
 </RelativeLayout>

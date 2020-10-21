@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by F R Summit on 21th October,2020
@@ -81,7 +83,7 @@ class DBHelper extends SQLiteOpenHelper {
     }
 
     public void addDeliveryReport(Report report, String deliveryManId) {
-        String QUERY = "INSERT INTO DELIVERY_MAN VALUES ('"
+        String QUERY = "INSERT INTO DELIVERY_REPORT VALUES ('"
                                 + report.getId() + "', '"
                                 + deliveryManId + "', '"
                                 + report.getOnBehalfOf() + "', '"
@@ -94,18 +96,49 @@ class DBHelper extends SQLiteOpenHelper {
         this.getWritableDatabase().execSQL(QUERY);
     }
 
+    public ArrayList<Report> getAllDeliveryReportList() {
+        ArrayList<Report> list = new ArrayList<>();
+        Map<String, ArrayList<Report>> myMap = new HashMap<>();
+
+        String QUERY = "SELECT * from DELIVERY_REPORT";
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            Cursor cursor = db.rawQuery(QUERY, null);
+            try {
+                if (cursor.moveToFirst()) {
+                    do {
+                        Report deliveryReport = new Report();
+
+                        deliveryReport.setId(cursor.getString(0));
+//                        deliveryReport.setDe(cursor.getString(1));
+                        deliveryReport.setOnBehalfOf(cursor.getString(2));
+                        deliveryReport.setOrderNumber(cursor.getString(3));
+                        deliveryReport.setOrderBy(cursor.getString(4));
+                        deliveryReport.setOrderDate(cursor.getString(5));
+                        deliveryReport.setDeliveryDate(cursor.getString(6));
+                        deliveryReport.setDeliveredToName(cursor.getString(7));
+                        deliveryReport.setComments(cursor.getString(8));
+
+                        list.add(deliveryReport);
+                        myMap.put(cursor.getString(1), list);
+                    } while (cursor.moveToNext());
+                }
+
+            } finally {
+                try {
+                    cursor.close();
+                } catch (Exception ignore) {}
+            }
+
+        } finally {
+            try { db.close(); } catch (Exception ignore) {}
+        }
+        return list;
+    }
+
     public ArrayList<DeliveryMan> getAllLoginDetails() {
         ArrayList<DeliveryMan> list = new ArrayList<>();
-
         String QUERY = "SELECT * from LOGIN_DETAILS";
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            id.add(cursor.getString(cursor.getColumnIndex("LOGIN_TABLE_ID")));
-//            showDate.add(cursor.getString(cursor.getColumnIndex("show_date")));
-//            itemName.add(cursor.getString(cursor.getColumnIndex("item_list")));
-//            itemQuantity.add(cursor.getString(cursor.getColumnIndex("item_list_quantity")));
-//            cursor.moveToNext();
-//        }
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor cursor = db.rawQuery(QUERY, null);
@@ -113,9 +146,47 @@ class DBHelper extends SQLiteOpenHelper {
                 if (cursor.moveToFirst()) {
                     do {
                         DeliveryMan deliveryMan = new DeliveryMan();
+
                         deliveryMan.setId(cursor.getString(0));
                         deliveryMan.setUsername(cursor.getString(1));
                         deliveryMan.setPassword(cursor.getString(2));
+
+                        list.add(deliveryMan);
+                    } while (cursor.moveToNext());
+                }
+
+            } finally {
+                try {
+                    cursor.close();
+                } catch (Exception ignore) {}
+            }
+
+        } finally {
+            try { db.close(); } catch (Exception ignore) {}
+        }
+        return list;
+    }
+
+    public ArrayList<DeliveryMan> getAllDeliveryMenList() {
+        ArrayList<DeliveryMan> list = new ArrayList<>();
+        String QUERY = "SELECT * from DELIVERY_MAN";
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            Cursor cursor = db.rawQuery(QUERY, null);
+            try {
+                if (cursor.moveToFirst()) {
+                    do {
+                        DeliveryMan deliveryMan = new DeliveryMan();
+
+                        deliveryMan.setId(cursor.getString(0));
+                        deliveryMan.setName(cursor.getString(1));
+                        deliveryMan.setEmail(cursor.getString(2));
+                        deliveryMan.setPhone(cursor.getString(3));
+                        deliveryMan.setAddress(cursor.getString(4));
+                        deliveryMan.setUsername(cursor.getString(5));
+                        deliveryMan.setPassword(cursor.getString(6));
+                        deliveryMan.setIsApproved(cursor.getString(7));
+
                         list.add(deliveryMan);
                     } while (cursor.moveToNext());
                 }

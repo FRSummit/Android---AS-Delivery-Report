@@ -32,8 +32,8 @@ public class MainActivity extends Activity {
 
         dbHelper = new DBHelper(this, null, null, 1);
         //dbHelper.removeAllTable();
-        //dbHelper.addLoginDetails(deliveryMan);
-        //dbHelper.addLoginDetails(deliveryMan2);
+        dbHelper.addLoginDetails(deliveryMan);
+        dbHelper.addLoginDetails(deliveryMan2);
 
         list = new ArrayList<>();
 
