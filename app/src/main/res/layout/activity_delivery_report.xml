@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeliveryReport">
+    tools:context=".DeliveryReport"
+    android:background="@drawable/report_input_background">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -299,7 +300,14 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/delivery_report_submit_btn_text"/>
+                        android:text="@string/delivery_report_submit_btn_text"
+                        android:textColor="#025377"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:onClick="deliveryReportSubmitHandler"
+                        android:background="@drawable/report_submit_button_background"/>
                 </RelativeLayout>
 
             </RelativeLayout>
