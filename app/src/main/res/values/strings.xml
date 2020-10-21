@@ -23,4 +23,7 @@
 
     <string name="user_img_upload">Upload photo</string>
     <string name="user_sign_img_upload">Upload signature</string>
+
+    <string name="ops">Ops, You are not a delivery man. Please registration as Shasroy Leader or a delivery man.</string>
+    <string name="visit_website">www.amarshasroy.com</string>
 </resources>

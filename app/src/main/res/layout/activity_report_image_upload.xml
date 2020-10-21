@@ -107,7 +107,7 @@
 
                     <Button
                         android:id="@+id/report_image_upload_select_camera"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:onClick="cameraBtnHandler"
                         android:text="Open Camera"
@@ -118,7 +118,7 @@
 
                     <Button
                         android:id="@+id/report_image_upload_select_gallery"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:onClick="galleryBtnHandler"
                         android:text="Gallery Image"
@@ -160,7 +160,7 @@
 
                     <Button
                         android:id="@+id/report_image_upload_submit_section_btn"
-                        android:layout_width="wrap_content"
+                        android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:onClick="uploadImageToServer"
                         android:text="Upload Image"
@@ -181,7 +181,7 @@
 
                     <Button
                         android:id="@+id/report_image_upload_sign_btn"
-                        android:layout_width="wrap_content"
+                        android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:onClick="goToSignatureHandler"
                         android:text="Upload signature"

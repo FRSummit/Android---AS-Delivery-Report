@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 public class DeliveryReport extends Activity {
 
     private EditText onBehalfOf;
@@ -17,6 +19,8 @@ public class DeliveryReport extends Activity {
     private EditText deliveryDate;
     private EditText deliveredToName;
     private EditText comments;
+
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,21 @@ public class DeliveryReport extends Activity {
         Report report = new Report();
         report.setOnBehalfOf("No one");
 
-        System.out.println(report.getOnBehalfOf());
+        System.out.println(">>>>>>>>>>>>>>>>>>>" + report.getOnBehalfOf());
+
+        dbHelper = new DBHelper(this, null, null, 1);
+        DeliveryMan deliveryMan = new DeliveryMan();
+        ArrayList<DeliveryMan> list = new ArrayList<>();
+        list = dbHelper.getAllLoginDetails();
+        for (int i=0; i<list.size(); i++) {
+            System.out.println(">>>>>>>>>>>>>>>>>>>" + list.get(i));
+            deliveryMan = list.get(i);
+            System.out.println(i + " id: " + deliveryMan.getId());
+            System.out.println(i + "username: " + deliveryMan.getUsername());
+            System.out.println(i + "password: " + deliveryMan.getPassword());
+        }
+
+
 
     }
 
