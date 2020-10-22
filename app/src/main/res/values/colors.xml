@@ -12,7 +12,7 @@
     <color name="input_text_color_2">#787878</color>
     <color name="input_text_hint_color">#787878</color>
 
-    <color name="ops">#FF0000</color>
+    <color name="ops">#CD0000</color>
     <color name="visit">#087C00</color>
 
     <color name="TRANSPARENT">#00000000</color>
@@ -23,4 +23,6 @@
     <color name="BLACK">#000000</color>
 
     <color name="shasroy_color">#ff683f</color>
+
+    <color name="error_alert_background">#FFCDBD</color>
 </resources>

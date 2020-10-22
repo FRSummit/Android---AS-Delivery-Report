@@ -1,7 +1,9 @@
 package com.frskynet.as_deliveryreport;
 
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -28,6 +30,9 @@ import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_USERNAME;
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_PASSWORD;
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_IS_APPROVED;
+import static com.frskynet.as_deliveryreport.ErrorMessages.SIGN_IN_NO_APPROVAL;
+import static com.frskynet.as_deliveryreport.ErrorMessages.ACCESS_DENIED;
+
 
 /**
  * Created by F R Summit on 22th October,2020
@@ -35,31 +40,28 @@ import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_
  * frsummit@simplexhub.com
  */
 public class DataLoadFromSheet {
-    private ArrayList<DeliveryMan> deliveryMenList;
+    private DBHelper dbHelper;
+    private ToasterMessage toasterMessage;
 
-    public void loadDeliveryPartnerData(Context context, final String username, final String password) {
+    public void loadDeliveryPartnerData(final Context context, final String username, final String password, final ProgressDialog loading) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, GET_DELIVERY_PARTNER_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                        System.out.println(response);
                         try {
                             JSONObject jobj = new JSONObject(response);
                             JSONArray jarray = jobj.getJSONArray("records");
                             for (int i = 0; i < jarray.length(); i++) {
                                 JSONObject jo = jarray.getJSONObject(i);
                                 if(( username.equals(jo.getString(KEY_DELIVERY_PARTNER_EMAIL)) ||
+                                        username.equals(jo.getString(KEY_DELIVERY_PARTNER_PHONE)) ||
                                         username.equals("0" + jo.getString(KEY_DELIVERY_PARTNER_PHONE)) ||
                                         username.equals("00880" + jo.getString(KEY_DELIVERY_PARTNER_PHONE)) ||
                                         username.equals("+880" + jo.getString(KEY_DELIVERY_PARTNER_PHONE)) ||
                                         username.equals(jo.getString(KEY_DELIVERY_PARTNER_USERNAME)) ) &&
                                         (password.equals(jo.getString(KEY_DELIVERY_PARTNER_PASSWORD))) ) {
-                                    System.out.println("Access Granted");
                                     String approval = jo.getString(KEY_DELIVERY_PARTNER_IS_APPROVED);
                                     if(approval.equals("1")) {
-                                        System.out.println("Approved");
-
                                         DeliveryMan deliveryMan = new DeliveryMan();
                                         deliveryMan.setId(jo.getString(KEY_DELIVERY_PARTNER_ID));
                                         deliveryMan.setName(jo.getString(KEY_DELIVERY_PARTNER_NAME));
@@ -70,36 +72,31 @@ public class DataLoadFromSheet {
                                         deliveryMan.setPassword(jo.getString(KEY_DELIVERY_PARTNER_PASSWORD));
                                         deliveryMan.setIsApproved(jo.getString(KEY_DELIVERY_PARTNER_IS_APPROVED));
 
-
+                                        dbHelper.addDeliveryManDetails(deliveryMan);
+                                        loading.dismiss();
+                                        Intent intent = new Intent(context, ErrorActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        context.startActivity(intent);
+                                        break;
                                     } else {
-                                        System.out.println("Apply for approval");
+                                        toasterMessage = new ToasterMessage();
+                                        toasterMessage.showErrorToaster(context, SIGN_IN_NO_APPROVAL);
                                     }
                                 } else {
-                                    System.out.println("Access Denied");
+                                    toasterMessage = new ToasterMessage();
+                                    toasterMessage.showErrorToaster(context, ACCESS_DENIED);
                                 }
-//                                DeliveryMan deliveryMan = new DeliveryMan();
-//                                deliveryMan.setId(jo.getString(KEY_DELIVERY_PARTNER_ID));
-//                                deliveryMan.setName(jo.getString(KEY_DELIVERY_PARTNER_NAME));
-//                                deliveryMan.setEmail(jo.getString(KEY_DELIVERY_PARTNER_EMAIL));
-//                                deliveryMan.setPhone(jo.getString(KEY_DELIVERY_PARTNER_PHONE));
-//                                deliveryMan.setAddress(jo.getString(KEY_DELIVERY_PARTNER_ADDRESS));
-//                                deliveryMan.setUsername(jo.getString(KEY_DELIVERY_PARTNER_USERNAME));
-//                                deliveryMan.setPassword(jo.getString(KEY_DELIVERY_PARTNER_PASSWORD));
-//                                deliveryMan.setIsApproved(jo.getString(KEY_DELIVERY_PARTNER_IS_APPROVED));
-
-//                                deliveryMenList = new ArrayList<>();
-//                                deliveryMenList.add(deliveryMan);
                             }
-                            System.out.println("List : " + deliveryMenList);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        toasterMessage = new ToasterMessage();
+                        toasterMessage.showErrorToaster(context, error.toString());
                     }
                 }
         );

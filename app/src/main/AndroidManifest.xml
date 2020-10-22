@@ -16,15 +16,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DeliveryHistory"></activity>
-        <activity android:name=".Signin" />
+        <activity android:name=".ErrorActivity"></activity>
+        <activity android:name=".DeliveryHistory" />
+<!--        <activity android:name=".Signin" />-->
         <activity android:name=".NonDeliveryMan" />
         <activity android:name=".SubmitReport" />
         <activity android:name=".SignatureUpload" />
         <activity android:name=".ReportImageUpload" />
         <activity android:name=".DeliveryReport" />
-        <activity android:name=".MainActivity">
-<!--        <activity android:name=".Signin">-->
+<!--        <activity android:name=".MainActivity">-->
+
+             <activity android:name=".Signin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

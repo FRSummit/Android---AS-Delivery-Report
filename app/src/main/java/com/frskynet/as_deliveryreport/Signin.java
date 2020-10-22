@@ -1,6 +1,7 @@
 package com.frskynet.as_deliveryreport;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,8 +38,9 @@ public class Signin extends Activity {
         String usrPass = password.getText().toString().trim();
 
         if(!usrName.isEmpty() && !usrPass.isEmpty()) {
-            dataLoadFromSheet.loadDeliveryPartnerData(this.getApplicationContext(), usrName, usrPass);
-            dataLoadFromSheet.loadDeliveryReportData(this.getApplicationContext());
+            final ProgressDialog loading = ProgressDialog.show(this,"Checking your submission","Please wait until loading process finish...",false,false);
+            dataLoadFromSheet.loadDeliveryPartnerData(this.getApplicationContext(), usrName, usrPass, loading);
+//            dataLoadFromSheet.loadDeliveryReportData(this.getApplicationContext());
         } else {
             if(usrName.isEmpty()) {
                 username.setError(SIGN_IN_USERNAME_ERROR_MESSAGE);
