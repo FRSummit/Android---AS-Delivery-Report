@@ -45,15 +45,15 @@ public class MainActivity extends Activity {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                /*if(list.isEmpty()) {
+                if(list.isEmpty()) {
                     startActivity(new Intent(MainActivity.this, NonDeliveryMan.class));
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 } else {
                     startActivity(new Intent(MainActivity.this, DeliveryReport.class));
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                }*/
+                }
 //                startActivity(new Intent(MainActivity.this, DeliveryReport.class));
-                startActivity(new Intent(MainActivity.this, NonDeliveryMan.class));
+//                startActivity(new Intent(MainActivity.this, NonDeliveryMan.class));
             }
         };
         Timer timer = new Timer();
