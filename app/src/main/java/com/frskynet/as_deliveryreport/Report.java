@@ -7,6 +7,7 @@ package com.frskynet.as_deliveryreport;
  */
 public class Report {
     private String id;
+    private String deliveryManId;
     private String onBehalfOf;
     private String orderNumber;
     private String orderBy;
@@ -18,8 +19,9 @@ public class Report {
     public Report() {
     }
 
-    public Report(String id, String onBehalfOf, String orderNumber, String orderBy, String orderDate, String deliveryDate, String deliveredToName, String comments) {
+    public Report(String id, String deliveryManId, String onBehalfOf, String orderNumber, String orderBy, String orderDate, String deliveryDate, String deliveredToName, String comments) {
         this.id = id;
+        this.deliveryManId = deliveryManId;
         this.onBehalfOf = onBehalfOf;
         this.orderNumber = orderNumber;
         this.orderBy = orderBy;
@@ -35,6 +37,14 @@ public class Report {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDeliveryManId() {
+        return deliveryManId;
+    }
+
+    public void setDeliveryManId(String deliveryManId) {
+        this.deliveryManId = deliveryManId;
     }
 
     public String getOnBehalfOf() {

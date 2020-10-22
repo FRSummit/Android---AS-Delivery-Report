@@ -24,6 +24,10 @@ public class NonDeliveryMan extends Activity {
         setContentView(R.layout.activity_non_delivery_man);
     }
 
+    public void loginBtnHandler(View view) {
+        startActivity(new Intent(NonDeliveryMan.this, Signin.class));
+    }
+
     public void shasroyLeaderHandler(View view) {
         Uri uri = Uri.parse("https://www.amarshasroy.com/become-a-shasroy-leader");
         startActivity(new Intent(Intent.ACTION_VIEW, uri));

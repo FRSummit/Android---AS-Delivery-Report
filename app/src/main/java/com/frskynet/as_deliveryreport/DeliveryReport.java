@@ -10,7 +10,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DeliveryReport extends Activity {
 
@@ -32,12 +34,8 @@ public class DeliveryReport extends Activity {
         onBehalfOf = (EditText) findViewById(R.id.delivery_report_on_behalf_of_input);
         orderNumber = (EditText) findViewById(R.id.delivery_report_order_number_input);
         orderBy = (EditText) findViewById(R.id.delivery_report_order_by_input);
-//        orderDate = (EditText) findViewById(R.id.delivery_report_order_date_input);
         orderDate = (DatePicker) findViewById(R.id.delivery_report_order_date);
-
-//        deliveryDate = (EditText) findViewById(R.id.delivery_report_delivery_date_input);
         deliveryDate = (DatePicker) findViewById(R.id.delivery_report_delivery_date);
-
         deliveredToName = (EditText) findViewById(R.id.delivery_report_delivered_to_input);
         comments = (EditText) findViewById(R.id.delivery_report_comment_input);
 
@@ -58,13 +56,24 @@ public class DeliveryReport extends Activity {
             System.out.println(i + "password: " + deliveryMan.getPassword());
         }
 
+        Report report2 = new Report();
+        ArrayList<Report> reportList = new ArrayList<>();
+        reportList = dbHelper.getAllDeliveryReportList();
+        for (int i=0; i<reportList.size(); i++) {
+            System.out.println(">>>>>>>>>>>>>>>>>>>" + reportList.get(i));
+            report2 = reportList.get(i);
+            System.out.println(i + " id: " + report2.getId());
+            System.out.println(i + "orderno: " + report2.getOrderNumber());
+            System.out.println(i + "comment: " + report2.getComments());
+        }
+
 
 
     }
 
     public void deliveryReportSubmitHandler(View view) {
-        startActivity(new Intent(this, ReportImageUpload.class));
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//        startActivity(new Intent(this, ReportImageUpload.class));
+//        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
 //        String day = "Day = " + orderDate.getDayOfMonth();
 //        String month = "Month = " + (orderDate.getMonth() + 1);
@@ -73,5 +82,45 @@ public class DeliveryReport extends Activity {
 //        Toast.makeText(getApplicationContext(), day + "\n" + month + "\n" + year, Toast.LENGTH_LONG).show();
 //
 //        comments.setError("Please Enter a username!");
+
+
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
+        Date date = new Date();
+//        System.out.println(formatter.format(date));
+
+        String id = "DELIVERY_REPORT_ID" + formatter.format(date);
+        String deliveryManId = "2014200000071";
+        String onBehalf = onBehalfOf.getText().toString().trim();
+        String orderNo = orderNumber.getText().toString().trim();
+        String orderBY = orderBy.getText().toString().trim();
+        String orderDt = "" + orderDate.getDayOfMonth() + "-" + orderDate.getMonth() + "-" + orderDate.getYear();
+        String deliveryDt = "" + deliveryDate.getDayOfMonth() + "-" + deliveryDate.getMonth() + "-" + deliveryDate.getYear();
+        String deliveryTo = deliveredToName.getText().toString().trim();
+        String cmnt = comments.getText().toString().trim();
+
+        if(!onBehalf.isEmpty() && !orderNo.isEmpty() && !orderBY.isEmpty() && !orderDt.isEmpty() && !deliveryDt.isEmpty() && !deliveryTo.isEmpty() && !cmnt.isEmpty()) {
+            Report report = new Report(id, "2014200000071", onBehalf, orderNo, orderBY, orderDt, deliveryDt, deliveryTo, cmnt);
+            dbHelper.addDeliveryReport(report);
+
+            onBehalfOf.setText("");
+            orderNumber.setText("");
+            orderBy.setText("");
+            deliveredToName.setText("");
+            comments.setText("");
+
+        } else {
+            if(onBehalf.isEmpty()) {
+                onBehalfOf.setError("Raise the request on behalf of should not be empty");
+            } if(orderNo.isEmpty()) {
+                orderNumber.setError("Order number should not be empty");
+            } if(orderBY.isEmpty()) {
+                orderBy.setError("Order by should not be empty");
+            } if(deliveryTo.isEmpty()) {
+                deliveredToName.setError("Delivery to name should not be empty");
+            } if(cmnt.isEmpty()) {
+                comments.setError("Comment should not be empty");
+            }
+        }
     }
 }

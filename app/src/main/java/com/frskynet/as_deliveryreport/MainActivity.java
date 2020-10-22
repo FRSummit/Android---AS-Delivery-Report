@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
         deliveryMan2.setPassword("developer002");
 
         dbHelper = new DBHelper(this, null, null, 1);
-        //dbHelper.removeAllTable();
+//        dbHelper.removeAllTable();
 //        dbHelper.addLoginDetails(deliveryMan);
 //        dbHelper.addLoginDetails(deliveryMan2);
 

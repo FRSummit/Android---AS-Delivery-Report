@@ -41,7 +41,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/non_delivery_man_suggestion_url_1"
+            android:id="@+id/non_delivery_man_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -50,13 +50,38 @@
             android:layout_below="@+id/non_delivery_man_suggestion_text_section">
 
             <Button
-                android:id="@+id/report_image_upload_submit_section_btn"
-                android:layout_width="250dp"
+                android:id="@+id/non_delivery_man_login_brn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="loginBtnHandler"
+                android:text="Sign in"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textAllCaps="false"
+                android:background="@drawable/report_submit_button_background"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/non_delivery_man_suggestion_url_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_below="@+id/non_delivery_man_login">
+
+            <Button
+                android:id="@+id/non_delivery_man_become_leader_btn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="shasroyLeaderHandler"
                 android:text="Become a Shasroy Leader"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:textAllCaps="false"
                 android:background="@drawable/report_submit_button_background"/>
         </RelativeLayout>
@@ -71,13 +96,15 @@
             android:layout_below="@+id/non_delivery_man_suggestion_url_1">
 
             <Button
-                android:id="@+id/report_image_upload_sign_btn"
-                android:layout_width="250dp"
+                android:id="@+id/non_delivery_man_delivery_man_application_btn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="deliveryManHandler"
                 android:text="Apply for Delivery Man"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:textAllCaps="false"
                 android:background="@drawable/report_submit_button_background"/>
         </RelativeLayout>

@@ -82,10 +82,10 @@ class DBHelper extends SQLiteOpenHelper {
         this.getWritableDatabase().execSQL(QUERY);
     }
 
-    public void addDeliveryReport(Report report, String deliveryManId) {
+    public void addDeliveryReport(Report report) {
         String QUERY = "INSERT INTO DELIVERY_REPORT VALUES ('"
                                 + report.getId() + "', '"
-                                + deliveryManId + "', '"
+                                + report.getDeliveryManId() + "', '"
                                 + report.getOnBehalfOf() + "', '"
                                 + report.getOrderNumber() + "', '"
                                 + report.getOrderBy() + "', '"
@@ -165,8 +165,6 @@ class DBHelper extends SQLiteOpenHelper {
 
     public ArrayList<Report> getAllDeliveryReportList() {
         ArrayList<Report> list = new ArrayList<>();
-        Map<String, ArrayList<Report>> myMap = new HashMap<>();
-
         String QUERY = "SELECT * from DELIVERY_REPORT";
         SQLiteDatabase db = this.getReadableDatabase();
         try {
@@ -177,7 +175,7 @@ class DBHelper extends SQLiteOpenHelper {
                         Report deliveryReport = new Report();
 
                         deliveryReport.setId(cursor.getString(0));
-//                        deliveryReport.setDe(cursor.getString(1));
+                        deliveryReport.setDeliveryManId(cursor.getString(1));
                         deliveryReport.setOnBehalfOf(cursor.getString(2));
                         deliveryReport.setOrderNumber(cursor.getString(3));
                         deliveryReport.setOrderBy(cursor.getString(4));
@@ -187,7 +185,6 @@ class DBHelper extends SQLiteOpenHelper {
                         deliveryReport.setComments(cursor.getString(8));
 
                         list.add(deliveryReport);
-                        myMap.put(cursor.getString(1), list);
                     } while (cursor.moveToNext());
                 }
 
