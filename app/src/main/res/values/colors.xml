@@ -9,7 +9,14 @@
 
     <color name="input_section_background">#dedede</color>
     <color name="input_text_color">#222</color>
+    <color name="input_text_color_2">#787878</color>
 
     <color name="ops">#FF0000</color>
     <color name="visit">#087C00</color>
+
+    <color name="TRANSPARENT">#00000000</color>
+    <color name="PURPLE">#7B00FF</color>
+    <color name="AQUA">#00FFFF</color>
+    <color name="PASTE">#0099FF</color>
+    <color name="WHITE">#FFFFFF</color>
 </resources>
