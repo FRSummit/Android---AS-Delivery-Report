@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
     }
 
     private void changeActivity() {
-        list = dbHelper.getAllLoginDetails();
+        list = dbHelper.getAllDeliveryMenList();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
                     startActivity(new Intent(MainActivity.this, NonDeliveryMan.class));
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 } else {
-                    startActivity(new Intent(MainActivity.this, DeliveryReport.class));
+                    startActivity(new Intent(MainActivity.this, DeliveryDashboard.class));
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
 //                startActivity(new Intent(MainActivity.this, DeliveryReport.class));

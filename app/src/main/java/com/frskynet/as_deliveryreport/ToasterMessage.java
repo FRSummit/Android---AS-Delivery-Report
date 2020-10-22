@@ -17,7 +17,7 @@ import static com.frskynet.as_deliveryreport.ErrorMessages.SIGN_IN_NO_APPROVAL;
 class ToasterMessage {
 
     public void showErrorToaster(Context context, String message) {
-        Toast toast = Toast.makeText(context, message, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
         View toastView = toast.getView();
         TextView toastMessage = (TextView) toastView.findViewById(android.R.id.message);
         toastMessage.setTextSize(18);

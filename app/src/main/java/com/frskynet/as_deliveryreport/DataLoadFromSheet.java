@@ -32,6 +32,7 @@ import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_IS_APPROVED;
 import static com.frskynet.as_deliveryreport.ErrorMessages.SIGN_IN_NO_APPROVAL;
 import static com.frskynet.as_deliveryreport.ErrorMessages.ACCESS_DENIED;
+import static com.frskynet.as_deliveryreport.ErrorMessages.SIGN_IN_APPROVAL_GRANTED;
 
 
 /**
@@ -51,6 +52,7 @@ public class DataLoadFromSheet {
                         try {
                             JSONObject jobj = new JSONObject(response);
                             JSONArray jarray = jobj.getJSONArray("records");
+                            System.out.println(jarray.length());
                             for (int i = 0; i < jarray.length(); i++) {
                                 JSONObject jo = jarray.getJSONObject(i);
                                 if(( username.equals(jo.getString(KEY_DELIVERY_PARTNER_EMAIL)) ||
@@ -61,7 +63,9 @@ public class DataLoadFromSheet {
                                         username.equals(jo.getString(KEY_DELIVERY_PARTNER_USERNAME)) ) &&
                                         (password.equals(jo.getString(KEY_DELIVERY_PARTNER_PASSWORD))) ) {
                                     String approval = jo.getString(KEY_DELIVERY_PARTNER_IS_APPROVED);
+                                    System.out.println("user");
                                     if(approval.equals("1")) {
+                                        System.out.println("approved");
                                         DeliveryMan deliveryMan = new DeliveryMan();
                                         deliveryMan.setId(jo.getString(KEY_DELIVERY_PARTNER_ID));
                                         deliveryMan.setName(jo.getString(KEY_DELIVERY_PARTNER_NAME));
@@ -72,19 +76,26 @@ public class DataLoadFromSheet {
                                         deliveryMan.setPassword(jo.getString(KEY_DELIVERY_PARTNER_PASSWORD));
                                         deliveryMan.setIsApproved(jo.getString(KEY_DELIVERY_PARTNER_IS_APPROVED));
 
+                                        dbHelper = new DBHelper(context, null, null, 1);
                                         dbHelper.addDeliveryManDetails(deliveryMan);
-                                        loading.dismiss();
-                                        Intent intent = new Intent(context, ErrorActivity.class);
+                                        Intent intent = new Intent(context, DeliveryDashboard.class);
+                                        intent.putExtra("LOGIN_ACCESS_GRANTED", SIGN_IN_APPROVAL_GRANTED);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         context.startActivity(intent);
+                                        loading.dismiss();
                                         break;
                                     } else {
+                                        System.out.println("not approved");
                                         toasterMessage = new ToasterMessage();
                                         toasterMessage.showErrorToaster(context, SIGN_IN_NO_APPROVAL);
+                                        loading.dismiss();
                                     }
                                 } else {
-                                    toasterMessage = new ToasterMessage();
-                                    toasterMessage.showErrorToaster(context, ACCESS_DENIED);
+                                    if(i == jarray.length()-1) {
+                                        toasterMessage = new ToasterMessage();
+                                        toasterMessage.showErrorToaster(context, ACCESS_DENIED);
+                                        loading.dismiss();
+                                    }
                                 }
                             }
                         } catch (JSONException e) {
