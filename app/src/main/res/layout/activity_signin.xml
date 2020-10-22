@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Signin"
-    android:background="@drawable/report_input_background">
+    tools:context=".Signin">
 
     <include
         android:id="@+id/common_logo_section"
@@ -13,43 +12,79 @@
         android:layout_height="100dp"
         layout="@layout/common_logo"/>
 
-    <EditText
-        android:id="@+id/et_email"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="@string/login_email_hint"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="15dp"
-        android:inputType="textEmailAddress"
-        android:layout_above="@id/et_password"
-        android:background="@drawable/et_custom"
-        android:textSize="15sp" />
-
-    <EditText
-        android:id="@+id/et_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="@string/password"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:padding="15dp"
-        android:inputType="textPassword"
-        android:layout_centerInParent="true"
-        android:background="@drawable/et_custom"
-        android:textSize="15sp" />
-
-    <Button
-        android:id="@+id/btn_login"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_password"
-        android:background="@drawable/btn_custom"
+        android:layout_below="@id/common_logo_section"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:textColor="@android:color/white"
-        android:text="Login"/>
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/login_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign in"
+            android:textColor="@color/BLACK"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:gravity="left"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_text"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/login_email_hint"
+                android:padding="15dp"
+                android:textColor="@color/BLACK"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/et_custom"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/et_email"
+                android:hint="@string/password"
+                android:layout_marginTop="10dp"
+                android:padding="15dp"
+                android:textColor="@color/BLACK"
+                android:inputType="textPassword"
+                android:layout_centerInParent="true"
+                android:background="@drawable/et_custom"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_password"
+                android:background="@drawable/report_submit_button_background"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/white"
+                android:text="Sign in"
+                android:textSize="18dp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/visit_website"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/visit_website"
+        android:textColor="@color/shasroy_color"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:onClick="visitWebsiteHandler"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

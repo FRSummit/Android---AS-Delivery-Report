@@ -24,6 +24,7 @@
         <activity android:name=".ReportImageUpload" />
         <activity android:name=".DeliveryReport" />
         <activity android:name=".MainActivity">
+<!--        <activity android:name=".Signin">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

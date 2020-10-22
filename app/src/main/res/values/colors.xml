@@ -19,6 +19,7 @@
     <color name="AQUA">#00FFFF</color>
     <color name="PASTE">#0099FF</color>
     <color name="WHITE">#FFFFFF</color>
+    <color name="BLACK">#000000</color>
 
     <color name="shasroy_color">#ff683f</color>
 </resources>
