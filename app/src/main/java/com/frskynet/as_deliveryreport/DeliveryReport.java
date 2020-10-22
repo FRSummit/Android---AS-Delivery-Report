@@ -72,8 +72,8 @@ public class DeliveryReport extends Activity {
     }
 
     public void deliveryReportSubmitHandler(View view) {
-//        startActivity(new Intent(this, ReportImageUpload.class));
-//        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        startActivity(new Intent(this, ReportImageUpload.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
 //        String day = "Day = " + orderDate.getDayOfMonth();
 //        String month = "Month = " + (orderDate.getMonth() + 1);
@@ -85,7 +85,7 @@ public class DeliveryReport extends Activity {
 
 
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
+        /*SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
         Date date = new Date();
 //        System.out.println(formatter.format(date));
 
@@ -121,6 +121,10 @@ public class DeliveryReport extends Activity {
             } if(cmnt.isEmpty()) {
                 comments.setError("Comment should not be empty");
             }
-        }
+        }*/
+    }
+
+    public void commonLogoClickHandler(View view) {
+        Toast.makeText(this, "Working", Toast.LENGTH_LONG).show();
     }
 }

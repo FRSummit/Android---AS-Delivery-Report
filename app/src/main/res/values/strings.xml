@@ -2,7 +2,7 @@
     <string name="app_name">AS_DeliveryReport</string>
     <string name="project_name">Amar Shasroy</string>
 
-    <string name="main_text">Delivery Report</string>
+    <string name="main_text">Delivery Management System</string>
 
     <string name="delivery_report_on_behalf_of_text">Raise this request on behalf of</string>
     <string name="delivery_report_on_behalf_of_input_hint">F R Summit</string>

@@ -11,25 +11,11 @@
         android:gravity="center"
         android:padding="10dp">
 
-            <TextView
-                android:id="@+id/common_maintext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/project_name"
-                android:textColor="@color/main_text"
-                android:textSize="40dp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"/>
-
-            <TextView
-                android:id="@+id/common_dr"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="@string/main_text"
-                android:textColor="@color/main_text"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/common_maintext"/>
+        <ImageView
+            android:id="@+id/main_logo_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/delivery_logo_activity_"/>
     </RelativeLayout>
 </FrameLayout>

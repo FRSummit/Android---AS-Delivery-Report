@@ -7,11 +7,19 @@
     tools:context=".DeliveryReport"
     android:background="@drawable/report_input_background">
 
-    <include
+    <RelativeLayout
         android:id="@+id/common_logo_section"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        layout="@layout/common_logo"/>
+        android:layout_height="wrap_content"
+        android:onClick="commonLogoClickHandler">
+
+        <include
+            android:id="@+id/common_logo_section_"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            layout="@layout/common_logo"/>
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
