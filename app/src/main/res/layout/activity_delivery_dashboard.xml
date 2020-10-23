@@ -12,15 +12,94 @@
         android:layout_height="100dp"
         layout="@layout/common_logo"/>
 
-    <TextView
-        android:id="@+id/login_text"
+    <LinearLayout
+        android:id="@+id/profile_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dashboard"
-        android:textColor="@color/BLACK"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:gravity="left"
-        android:layout_below="@+id/common_logo_section"/>
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/common_logo_section">
+
+        <TextView
+            android:id="@+id/dashboard_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="F R Summit"
+            android:textColor="@color/shasroy_color"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/dashboard_user_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="frsummit@simplexhub.com"
+            android:textColor="@color/shasroy_color"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_below="@+id/dashboard_user_name"/>
+
+        <TextView
+            android:id="@+id/dashboard_user_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mymensingh, Dhaka Bangladesh"
+            android:textColor="@color/shasroy_color"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_below="@+id/dashboard_user_email"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/order_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/profile_info">
+
+        <TextView
+            android:id="@+id/order_list_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Order List"
+            android:textColor="@color/BLACK"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:gravity="left"/>
+
+        <ListView
+            android:id="@+id/dashboard_order_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="54dp"
+            android:layout_below="@+id/order_list_text"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/dashboard_reset_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/ripple_transparent_background"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/white"
+        android:text="Reset My App"
+        android:textSize="18dp"
+        android:textAllCaps="false"
+        android:onClick="resetBtnClickHandler"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

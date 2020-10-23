@@ -27,4 +27,16 @@ class ToasterMessage {
         toastView.setBackgroundColor(Color.RED);
         toast.show();
     }
+
+    public void showInformationToaster(Context context, String message) {
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        View toastView = toast.getView();
+        TextView toastMessage = (TextView) toastView.findViewById(android.R.id.message);
+        toastMessage.setTextSize(18);
+        toastMessage.setTextColor(Color.BLACK);
+        toastMessage.setGravity(Gravity.CENTER_VERTICAL);
+        toastMessage.setCompoundDrawablePadding(16);
+        toastView.setBackgroundColor(Color.GREEN);
+        toast.show();
+    }
 }

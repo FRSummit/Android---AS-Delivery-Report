@@ -80,6 +80,7 @@ public class DataLoadFromSheet {
                                         dbHelper.addDeliveryManDetails(deliveryMan);
                                         Intent intent = new Intent(context, DeliveryDashboard.class);
                                         intent.putExtra("LOGIN_ACCESS_GRANTED", SIGN_IN_APPROVAL_GRANTED);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         context.startActivity(intent);
                                         loading.dismiss();
@@ -89,6 +90,7 @@ public class DataLoadFromSheet {
                                         toasterMessage = new ToasterMessage();
                                         toasterMessage.showErrorToaster(context, SIGN_IN_NO_APPROVAL);
                                         loading.dismiss();
+                                        break;
                                     }
                                 } else {
                                     if(i == jarray.length()-1) {
