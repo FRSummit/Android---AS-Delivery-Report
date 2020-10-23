@@ -45,27 +45,28 @@ public class DeliveryReport extends Activity {
         System.out.println(">>>>>>>>>>>>>>>>>>>" + report.getOnBehalfOf());
 
         dbHelper = new DBHelper(this, null, null, 1);
-        DeliveryMan deliveryMan = new DeliveryMan();
-        ArrayList<DeliveryMan> list = new ArrayList<>();
-        list = dbHelper.getAllLoginDetails();
-        for (int i=0; i<list.size(); i++) {
-            System.out.println(">>>>>>>>>>>>>>>>>>>" + list.get(i));
-            deliveryMan = list.get(i);
-            System.out.println(i + " id: " + deliveryMan.getId());
-            System.out.println(i + "username: " + deliveryMan.getUsername());
-            System.out.println(i + "password: " + deliveryMan.getPassword());
-        }
 
-        Report report2 = new Report();
-        ArrayList<Report> reportList = new ArrayList<>();
-        reportList = dbHelper.getAllDeliveryReportList();
-        for (int i=0; i<reportList.size(); i++) {
-            System.out.println(">>>>>>>>>>>>>>>>>>>" + reportList.get(i));
-            report2 = reportList.get(i);
-            System.out.println(i + " id: " + report2.getId());
-            System.out.println(i + "orderno: " + report2.getOrderNumber());
-            System.out.println(i + "comment: " + report2.getComments());
-        }
+//        DeliveryMan deliveryMan = new DeliveryMan();
+//        ArrayList<DeliveryMan> list = new ArrayList<>();
+//        list = dbHelper.getAllLoginDetails();
+//        for (int i=0; i<list.size(); i++) {
+//            System.out.println(">>>>>>>>>>>>>>>>>>>" + list.get(i));
+//            deliveryMan = list.get(i);
+//            System.out.println(i + " id: " + deliveryMan.getId());
+//            System.out.println(i + "username: " + deliveryMan.getUsername());
+//            System.out.println(i + "password: " + deliveryMan.getPassword());
+//        }
+//
+//        Report report2 = new Report();
+//        ArrayList<Report> reportList = new ArrayList<>();
+//        reportList = dbHelper.getAllDeliveryReportList();
+//        for (int i=0; i<reportList.size(); i++) {
+//            System.out.println(">>>>>>>>>>>>>>>>>>>" + reportList.get(i));
+//            report2 = reportList.get(i);
+//            System.out.println(i + " id: " + report2.getId());
+//            System.out.println(i + "orderno: " + report2.getOrderNumber());
+//            System.out.println(i + "comment: " + report2.getComments());
+//        }
 
 
 

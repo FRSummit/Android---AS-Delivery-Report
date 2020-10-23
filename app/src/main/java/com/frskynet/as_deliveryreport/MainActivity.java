@@ -18,15 +18,15 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DeliveryMan deliveryMan = new DeliveryMan();
-        deliveryMan.setId("2014200000071");
-        deliveryMan.setUsername("frsummit");
-        deliveryMan.setPassword("developer001");
-
-        DeliveryMan deliveryMan2 = new DeliveryMan();
-        deliveryMan2.setId("20160000000059");
-        deliveryMan2.setUsername("rimi");
-        deliveryMan2.setPassword("developer002");
+//        DeliveryMan deliveryMan = new DeliveryMan();
+//        deliveryMan.setId("2014200000071");
+//        deliveryMan.setUsername("frsummit");
+//        deliveryMan.setPassword("developer001");
+//
+//        DeliveryMan deliveryMan2 = new DeliveryMan();
+//        deliveryMan2.setId("20160000000059");
+//        deliveryMan2.setUsername("rimi");
+//        deliveryMan2.setPassword("developer002");
 
         dbHelper = new DBHelper(this, null, null, 1);
 //        dbHelper.removeAllTable();
