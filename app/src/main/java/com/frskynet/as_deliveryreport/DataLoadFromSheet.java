@@ -30,6 +30,9 @@ import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_USERNAME;
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_PASSWORD;
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_IS_APPROVED;
+
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_PARTNER_ID;
+
 import static com.frskynet.as_deliveryreport.ErrorMessages.SIGN_IN_NO_APPROVAL;
 import static com.frskynet.as_deliveryreport.ErrorMessages.ACCESS_DENIED;
 import static com.frskynet.as_deliveryreport.ErrorMessages.SIGN_IN_APPROVAL_GRANTED;
@@ -52,7 +55,6 @@ public class DataLoadFromSheet {
                         try {
                             JSONObject jobj = new JSONObject(response);
                             JSONArray jarray = jobj.getJSONArray("records");
-                            System.out.println(jarray.length());
                             for (int i = 0; i < jarray.length(); i++) {
                                 JSONObject jo = jarray.getJSONObject(i);
                                 if(( username.equals(jo.getString(KEY_DELIVERY_PARTNER_EMAIL)) ||
@@ -63,9 +65,7 @@ public class DataLoadFromSheet {
                                         username.equals(jo.getString(KEY_DELIVERY_PARTNER_USERNAME)) ) &&
                                         (password.equals(jo.getString(KEY_DELIVERY_PARTNER_PASSWORD))) ) {
                                     String approval = jo.getString(KEY_DELIVERY_PARTNER_IS_APPROVED);
-                                    System.out.println("user");
                                     if(approval.equals("1")) {
-                                        System.out.println("approved");
                                         DeliveryMan deliveryMan = new DeliveryMan();
                                         deliveryMan.setId(jo.getString(KEY_DELIVERY_PARTNER_ID));
                                         deliveryMan.setName(jo.getString(KEY_DELIVERY_PARTNER_NAME));
@@ -121,14 +121,35 @@ public class DataLoadFromSheet {
         queue.add(stringRequest);
     }
 
-    public void loadDeliveryReportData(Context context) {
+    public void loadDeliveryReportData(final Context context, final String deliveryPartnerId, final ProgressDialog loading) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, GET_DELIVERY_REPORT_LIST_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                        System.out.println(response);
-                        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                        try {
+                            JSONObject jobj = new JSONObject(response);
+                            JSONArray jarray = jobj.getJSONArray("records");
+                            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+//                            System.out.println(response);
+                            System.out.println(jarray.length());
+                            for (int i = 0; i < jarray.length(); i++) {
+                                JSONObject jo = jarray.getJSONObject(i);
+                                if( deliveryPartnerId.equals(jo.getString(KEY_DELIVERY_REPORT_PARTNER_ID)) ) {
+                                    System.out.println("Matched");
+                                    loading.dismiss();
+                                } else {
+                                    if(i == jarray.length()-1) {
+                                        System.out.println("Not matched");
+                                        loading.dismiss();
+                                    }
+                                }
+                            }
+                            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                            loading.dismiss();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {

@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:showIn="@layout/activity_main" >
+    tools:showIn="@layout/activity_main">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="10dp">
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp">
 
         <ImageView
             android:id="@+id/main_logo_icon"

@@ -21,6 +21,7 @@ public class Configuration {
     public static final String KEY_DELIVERY_PARTNER_PASSWORD = "Password";
     public static final String KEY_DELIVERY_PARTNER_IS_APPROVED = "IsApproved";
 
+    public static final String KEY_DELIVERY_REPORT_PARTNER_ID = "DeliveryPartnerId";
 
     public static final String KEY_NAME = "uName";
     public static final String KEY_IMAGE = "uImage";
