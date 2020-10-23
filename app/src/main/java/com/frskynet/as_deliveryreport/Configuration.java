@@ -21,7 +21,24 @@ public class Configuration {
     public static final String KEY_DELIVERY_PARTNER_PASSWORD = "Password";
     public static final String KEY_DELIVERY_PARTNER_IS_APPROVED = "IsApproved";
 
+    public static final String KEY_DELIVERY_REPORT_ID = "ReportId";
     public static final String KEY_DELIVERY_REPORT_PARTNER_ID = "DeliveryPartnerId";
+    public static final String KEY_DELIVERY_REPORT_CUSTOMER_NAME = "CustomerName";
+    public static final String KEY_DELIVERY_REPORT_CUSTOMER_NAME_OVERRIDE = "CustomerNameOverride";
+    public static final String KEY_DELIVERY_REPORT_ORDER_NUMBER = "OrderNo";
+    public static final String KEY_DELIVERY_REPORT_ORDER_NUMBER_OVERRIDE = "OrderNoOverride";
+    public static final String KEY_DELIVERY_REPORT_ORDER_BY = "OrderBy";
+    public static final String KEY_DELIVERY_REPORT_ORDER_BY_OVERRIDE = "OrderByOverride";
+    public static final String KEY_DELIVERY_REPORT_ORDER_DATE = "OrderDate";
+    public static final String KEY_DELIVERY_REPORT_ORDER_DATE_OVERRIDE = "OrderDateOverride";
+    public static final String KEY_DELIVERY_REPORT_DELIVERY_DATE = "DeliveryDate";
+    public static final String KEY_DELIVERY_REPORT_DELIVERY_DATE_OVERRIDE = "DeliveryDateOverride";
+    public static final String KEY_DELIVERY_REPORT_DELIVERY_TO_NAME = "DeliveryToName";
+    public static final String KEY_DELIVERY_REPORT_DELIVERY_TO_NAME_OVERRIDE = "DeliveryToNameOverride";
+    public static final String KEY_DELIVERY_REPORT_STATUS = "Status";
+    public static final String KEY_DELIVERY_REPORT_COMMENT = "Comment";
+    public static final String KEY_DELIVERY_REPORT_IMAGE_URL = "ImageUrl";
+    public static final String KEY_DELIVERY_REPORT_SIGNATURE_URL = "SignatureUrl";
 
     public static final String KEY_NAME = "uName";
     public static final String KEY_IMAGE = "uImage";

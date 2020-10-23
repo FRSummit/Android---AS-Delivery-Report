@@ -23,9 +23,11 @@ public class DeliveryDashboard extends Activity {
     private TextView address;
     private ListView reportList;
     private ArrayList<DeliveryMan> deliveryManList;
+    private ArrayList<Report> reportArrayList;
     private ArrayAdapter<String> arrayAdapter;
     private ToasterMessage toasterMessage;
     private DataLoadFromSheet dataLoadFromSheet;
+    private String[] orderList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +57,19 @@ public class DeliveryDashboard extends Activity {
     }
 
     public void resetBtnClickHandler(View view) {
-        final ProgressDialog loading = ProgressDialog.show(this,"Processing...","Please wait...",false,false);
-        dbHelper.removeAllTable();
-        changeActivity(loading);
+//        final ProgressDialog loading = ProgressDialog.show(this,"Processing...","Please wait...",false,false);
+//        dbHelper.removeAllTable();
+//        changeActivity(loading);
+        reportArrayList = new ArrayList<>();
+        reportArrayList = dbHelper.getAllDeliveryReportList();
+        System.out.println(reportArrayList.size());
+        orderList = new String[reportArrayList.size()];
+        for(int i=0; i< reportArrayList.size(); i++) {
+            System.out.println(reportArrayList.get(i).getId());
+            orderList[i] = reportArrayList.get(i).getId();
+        }
+        arrayAdapter = new ArrayAdapter<String>(DeliveryDashboard.this, android.R.layout.simple_list_item_1, orderList);
+        reportList.setAdapter(arrayAdapter);
     }
 
     private void changeActivity(final ProgressDialog loading) {
@@ -73,7 +85,7 @@ public class DeliveryDashboard extends Activity {
     }
 
     public void orderLoad (String deliveryPartnerId) {
-        Toast.makeText(this, this.getApplicationContext().toString(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, this.getApplicationContext().toString(), Toast.LENGTH_SHORT).show();
         final ProgressDialog loading = ProgressDialog.show(this,"Your order is loading","Please wait until loading process finish...",false,false);
         dataLoadFromSheet.loadDeliveryReportData(this.getApplicationContext(), deliveryPartnerId, loading);
     }

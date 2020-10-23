@@ -31,11 +31,29 @@ import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_PASSWORD;
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_PARTNER_IS_APPROVED;
 
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ID;
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_PARTNER_ID;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_CUSTOMER_NAME;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_CUSTOMER_NAME_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_NUMBER;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_NUMBER_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_BY;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_BY_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_DATE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_DATE_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_DELIVERY_DATE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_DELIVERY_DATE_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_DELIVERY_TO_NAME;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_DELIVERY_TO_NAME_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_STATUS;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_COMMENT;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_IMAGE_URL;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_SIGNATURE_URL;
 
 import static com.frskynet.as_deliveryreport.ErrorMessages.SIGN_IN_NO_APPROVAL;
 import static com.frskynet.as_deliveryreport.ErrorMessages.ACCESS_DENIED;
 import static com.frskynet.as_deliveryreport.ErrorMessages.SIGN_IN_APPROVAL_GRANTED;
+import static com.frskynet.as_deliveryreport.ErrorMessages.NO_ORDER_FOUND_FOR_YOU;
 
 
 /**
@@ -46,6 +64,7 @@ import static com.frskynet.as_deliveryreport.ErrorMessages.SIGN_IN_APPROVAL_GRAN
 public class DataLoadFromSheet {
     private DBHelper dbHelper;
     private ToasterMessage toasterMessage;
+    private ArrayList<Report> reportArrayList;
 
     public void loadDeliveryPartnerData(final Context context, final String username, final String password, final ProgressDialog loading) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, GET_DELIVERY_PARTNER_URL,
@@ -57,6 +76,7 @@ public class DataLoadFromSheet {
                             JSONArray jarray = jobj.getJSONArray("records");
                             for (int i = 0; i < jarray.length(); i++) {
                                 JSONObject jo = jarray.getJSONObject(i);
+                                boolean flag = false;
                                 if(( username.equals(jo.getString(KEY_DELIVERY_PARTNER_EMAIL)) ||
                                         username.equals(jo.getString(KEY_DELIVERY_PARTNER_PHONE)) ||
                                         username.equals("0" + jo.getString(KEY_DELIVERY_PARTNER_PHONE)) ||
@@ -66,6 +86,7 @@ public class DataLoadFromSheet {
                                         (password.equals(jo.getString(KEY_DELIVERY_PARTNER_PASSWORD))) ) {
                                     String approval = jo.getString(KEY_DELIVERY_PARTNER_IS_APPROVED);
                                     if(approval.equals("1")) {
+                                        flag = true;
                                         DeliveryMan deliveryMan = new DeliveryMan();
                                         deliveryMan.setId(jo.getString(KEY_DELIVERY_PARTNER_ID));
                                         deliveryMan.setName(jo.getString(KEY_DELIVERY_PARTNER_NAME));
@@ -93,7 +114,7 @@ public class DataLoadFromSheet {
                                         break;
                                     }
                                 } else {
-                                    if(i == jarray.length()-1) {
+                                    if(i == (jarray.length()-1) && flag) {
                                         toasterMessage = new ToasterMessage();
                                         toasterMessage.showErrorToaster(context, ACCESS_DENIED);
                                         loading.dismiss();
@@ -122,6 +143,7 @@ public class DataLoadFromSheet {
     }
 
     public void loadDeliveryReportData(final Context context, final String deliveryPartnerId, final ProgressDialog loading) {
+        reportArrayList = new ArrayList<>();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, GET_DELIVERY_REPORT_LIST_URL,
                 new Response.Listener<String>() {
                     @Override
@@ -129,22 +151,46 @@ public class DataLoadFromSheet {
                         try {
                             JSONObject jobj = new JSONObject(response);
                             JSONArray jarray = jobj.getJSONArray("records");
-                            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-//                            System.out.println(response);
                             System.out.println(jarray.length());
                             for (int i = 0; i < jarray.length(); i++) {
                                 JSONObject jo = jarray.getJSONObject(i);
+                                boolean flag = false;
                                 if( deliveryPartnerId.equals(jo.getString(KEY_DELIVERY_REPORT_PARTNER_ID)) ) {
-                                    System.out.println("Matched");
-                                    loading.dismiss();
+                                    flag = true;
+                                    Report report = new Report();
+                                    report.setId(jo.getString(KEY_DELIVERY_REPORT_ID));
+                                    report.setDeliveryManId(jo.getString(KEY_DELIVERY_REPORT_PARTNER_ID));
+                                    report.setCustomerName(jo.getString(KEY_DELIVERY_REPORT_CUSTOMER_NAME));
+                                    report.setCustomerNameOverride(jo.getString(KEY_DELIVERY_REPORT_CUSTOMER_NAME_OVERRIDE));
+                                    report.setOrderNumber(jo.getString(KEY_DELIVERY_REPORT_ORDER_NUMBER));
+                                    report.setOrderNumberOverride(jo.getString(KEY_DELIVERY_REPORT_ORDER_NUMBER_OVERRIDE));
+                                    report.setOrderBy(jo.getString(KEY_DELIVERY_REPORT_ORDER_BY));
+                                    report.setOrderByOverride(jo.getString(KEY_DELIVERY_REPORT_ORDER_BY_OVERRIDE));
+                                    report.setOrderDate(jo.getString(KEY_DELIVERY_REPORT_ORDER_DATE));
+                                    report.setOrderDateOverride(jo.getString(KEY_DELIVERY_REPORT_ORDER_DATE_OVERRIDE));
+                                    report.setDeliveryDate(jo.getString(KEY_DELIVERY_REPORT_DELIVERY_DATE));
+                                    report.setDeliveryDateOverride(jo.getString(KEY_DELIVERY_REPORT_DELIVERY_DATE_OVERRIDE));
+                                    report.setDeliveredToName(jo.getString(KEY_DELIVERY_REPORT_DELIVERY_TO_NAME));
+                                    report.setDeliveredToNameOverride(jo.getString(KEY_DELIVERY_REPORT_DELIVERY_TO_NAME_OVERRIDE));
+                                    report.setStatus(jo.getString(KEY_DELIVERY_REPORT_STATUS));
+                                    report.setComments(jo.getString(KEY_DELIVERY_REPORT_COMMENT));
+                                    report.setImageURL(jo.getString(KEY_DELIVERY_REPORT_IMAGE_URL));
+                                    report.setSignatureURL(jo.getString(KEY_DELIVERY_REPORT_SIGNATURE_URL));
+
+                                    reportArrayList.add(report);
+                                    toasterMessage = new ToasterMessage();
+                                    toasterMessage.showInformationToaster(context, "Your order list....");
                                 } else {
-                                    if(i == jarray.length()-1) {
-                                        System.out.println("Not matched");
-                                        loading.dismiss();
+                                    if(i == (jarray.length()-1) && flag) {
+                                        toasterMessage = new ToasterMessage();
+                                        toasterMessage.showErrorToaster(context, NO_ORDER_FOUND_FOR_YOU);
                                     }
                                 }
                             }
-                            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                            System.out.println(reportArrayList);
+                            dbHelper = new DBHelper(context, null, null, 1);
+                            dbHelper.removeAllFromDeliveryReport();
+                            dbHelper.addDeliveryReport(reportArrayList);
                             loading.dismiss();
 
                         } catch (JSONException e) {

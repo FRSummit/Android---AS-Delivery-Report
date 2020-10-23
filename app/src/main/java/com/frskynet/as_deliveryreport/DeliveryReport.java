@@ -39,10 +39,10 @@ public class DeliveryReport extends Activity {
         deliveredToName = (EditText) findViewById(R.id.delivery_report_delivered_to_input);
         comments = (EditText) findViewById(R.id.delivery_report_comment_input);
 
-        Report report = new Report();
-        report.setOnBehalfOf("No one");
+//        Report report = new Report();
+//        report.setOnBehalfOf("No one");
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>" + report.getOnBehalfOf());
+//        System.out.println(">>>>>>>>>>>>>>>>>>>" + report.getOnBehalfOf());
 
         dbHelper = new DBHelper(this, null, null, 1);
 
