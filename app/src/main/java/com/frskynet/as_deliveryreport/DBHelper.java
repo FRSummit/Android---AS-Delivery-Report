@@ -28,13 +28,6 @@ class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String QUERY;
-//        QUERY = "CREATE TABLE IF NOT EXISTS LOGIN_DETAILS (" +
-//                                "LOGIN_TABLE_ID VARCHAR(40) PRIMARY KEY," +
-//                                "USERNAME_MAIL_PHONE VARCHAR(40)," +
-//                                "PASSWORD VARCHAR(30)" +
-//                            ")";
-//        db.execSQL(QUERY);
-
         QUERY = "CREATE TABLE IF NOT EXISTS DELIVERY_MAN (" +
                                 "DELIVERY_MAN_TABLE_ID VARCHAR(40) PRIMARY KEY," +
                                 "NAME VARCHAR(50)," +
@@ -60,14 +53,6 @@ class DBHelper extends SQLiteOpenHelper {
                             +")";
         db.execSQL(QUERY);
     }
-
-//    public void addLoginDetails(DeliveryMan deliveryMan) {
-//        String QUERY = "INSERT INTO LOGIN_DETAILS VALUES ('"
-//                                + deliveryMan.getId() + "', '"
-//                                + deliveryMan.getUsername() + "', '"
-//                                + deliveryMan.getPassword() + "');";
-//        this.getWritableDatabase().execSQL(QUERY);
-//    }
 
     public void addDeliveryManDetails(DeliveryMan deliveryMan) {
         String QUERY = "INSERT INTO DELIVERY_MAN VALUES ('"
@@ -95,37 +80,6 @@ class DBHelper extends SQLiteOpenHelper {
                                 + report.getComments() + "');";
         this.getWritableDatabase().execSQL(QUERY);
     }
-
-//    public ArrayList<DeliveryMan> getAllLoginDetails() {
-//        ArrayList<DeliveryMan> list = new ArrayList<>();
-//        String QUERY = "SELECT * from LOGIN_DETAILS";
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        try {
-//            Cursor cursor = db.rawQuery(QUERY, null);
-//            try {
-//                if (cursor.moveToFirst()) {
-//                    do {
-//                        DeliveryMan deliveryMan = new DeliveryMan();
-//
-//                        deliveryMan.setId(cursor.getString(0));
-//                        deliveryMan.setUsername(cursor.getString(1));
-//                        deliveryMan.setPassword(cursor.getString(2));
-//
-//                        list.add(deliveryMan);
-//                    } while (cursor.moveToNext());
-//                }
-//
-//            } finally {
-//                try {
-//                    cursor.close();
-//                } catch (Exception ignore) {}
-//            }
-//
-//        } finally {
-//            try { db.close(); } catch (Exception ignore) {}
-//        }
-//        return list;
-//    }
 
     public ArrayList<DeliveryMan> getAllDeliveryMenList() {
         ArrayList<DeliveryMan> list = new ArrayList<>();
