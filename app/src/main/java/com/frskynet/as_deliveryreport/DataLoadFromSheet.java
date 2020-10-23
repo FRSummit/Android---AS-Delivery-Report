@@ -151,7 +151,6 @@ public class DataLoadFromSheet {
                         try {
                             JSONObject jobj = new JSONObject(response);
                             JSONArray jarray = jobj.getJSONArray("records");
-                            System.out.println(jarray.length());
                             for (int i = 0; i < jarray.length(); i++) {
                                 JSONObject jo = jarray.getJSONObject(i);
                                 boolean flag = false;

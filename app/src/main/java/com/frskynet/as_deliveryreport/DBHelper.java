@@ -104,6 +104,7 @@ class DBHelper extends SQLiteOpenHelper {
         for (int i = 0; i< reportArrayList.size(); i++) {
             Report report = new Report();
             report = reportArrayList.get(i);
+            System.out.println(">>>>>>>>>> " + report);
             String QUERY = "INSERT INTO DELIVERY_REPORT VALUES ('"
                                     + report.getId() + "', '"
                                     + report.getDeliveryManId() + "', '"

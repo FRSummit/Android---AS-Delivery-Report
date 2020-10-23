@@ -49,17 +49,12 @@ public class DeliveryDashboard extends Activity {
         email.setText(deliveryMan.getEmail());
         address.setText(deliveryMan.getAddress());
 
-        String[] item = {"Items name", "Items name", "Items name", "Items name", "Items name", "Items name", "Items name", "Items name", "Items name"};
-        arrayAdapter = new ArrayAdapter<String>(DeliveryDashboard.this, android.R.layout.simple_list_item_1, item);
-        reportList.setAdapter(arrayAdapter);
+//        String[] item = {"Items name", "Items name", "Items name", "Items name", "Items name", "Items name", "Items name", "Items name", "Items name"};
+//        arrayAdapter = new ArrayAdapter<String>(DeliveryDashboard.this, android.R.layout.simple_list_item_1, item);
+//        reportList.setAdapter(arrayAdapter);
 
         orderLoad(deliveryMan.getId());
-    }
 
-    public void resetBtnClickHandler(View view) {
-//        final ProgressDialog loading = ProgressDialog.show(this,"Processing...","Please wait...",false,false);
-//        dbHelper.removeAllTable();
-//        changeActivity(loading);
         reportArrayList = new ArrayList<>();
         reportArrayList = dbHelper.getAllDeliveryReportList();
         System.out.println(reportArrayList.size());
@@ -70,6 +65,12 @@ public class DeliveryDashboard extends Activity {
         }
         arrayAdapter = new ArrayAdapter<String>(DeliveryDashboard.this, android.R.layout.simple_list_item_1, orderList);
         reportList.setAdapter(arrayAdapter);
+    }
+
+    public void resetBtnClickHandler(View view) {
+//        final ProgressDialog loading = ProgressDialog.show(this,"Processing...","Please wait...",false,false);
+//        dbHelper.removeAllTable();
+//        changeActivity(loading);
     }
 
     private void changeActivity(final ProgressDialog loading) {
