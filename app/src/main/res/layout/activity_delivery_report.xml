@@ -216,7 +216,7 @@
                         android:paddingRight="20dp"
                         android:textAllCaps="false"
                         android:onClick="deliveryReportSubmitHandler"
-                        android:background="@drawable/report_submit_button_background"/>
+                        android:background="@drawable/ripple_transparent_background"/>
                 </RelativeLayout>
 
             </RelativeLayout>

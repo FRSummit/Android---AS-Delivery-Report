@@ -63,7 +63,7 @@
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
                             android:textAllCaps="false"
-                            android:background="@drawable/report_submit_button_background"/>
+                            android:background="@drawable/ripple_transparent_background"/>
 
                     </RelativeLayout>
 
@@ -104,7 +104,7 @@
                             android:paddingRight="20dp"
                             android:textAllCaps="false"
                             android:layout_marginTop="10dp"
-                            android:background="@drawable/report_submit_button_background"/>
+                            android:background="@drawable/ripple_transparent_background"/>
 
                     </RelativeLayout>
 

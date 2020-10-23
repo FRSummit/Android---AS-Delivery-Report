@@ -56,7 +56,7 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:textAllCaps="false"
-                        android:background="@drawable/report_submit_button_background"/>
+                        android:background="@drawable/ripple_transparent_background"/>
 
                     <Button
                         android:id="@+id/report_image_upload_select_gallery"
@@ -69,7 +69,7 @@
                         android:textAllCaps="false"
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@+id/report_image_upload_select_camera"
-                        android:background="@drawable/report_submit_button_background"/>
+                        android:background="@drawable/ripple_transparent_background"/>
 
                 </RelativeLayout>
 
@@ -109,7 +109,7 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:textAllCaps="false"
-                        android:background="@drawable/report_submit_button_background"/>
+                        android:background="@drawable/ripple_transparent_background"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -130,7 +130,7 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:textAllCaps="false"
-                        android:background="@drawable/report_submit_button_background"/>
+                        android:background="@drawable/ripple_transparent_background"/>
                 </RelativeLayout>
             </RelativeLayout>
 
