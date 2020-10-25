@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import static com.frskynet.as_deliveryreport.Configuration.INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER;
 
 public class DeliveryReport extends Activity {
 
@@ -25,6 +26,7 @@ public class DeliveryReport extends Activity {
     private EditText comments;
 
     private DBHelper dbHelper;
+    private String intentExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,13 @@ public class DeliveryReport extends Activity {
 //            System.out.println(i + "orderno: " + report2.getOrderNumber());
 //            System.out.println(i + "comment: " + report2.getComments());
 //        }
+
+        Intent intentText = getIntent();
+        Bundle extraText = intentText.getExtras();
+        if(extraText != null) {
+            intentExtra = (String) extraText.get(INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER);
+        }
+        System.out.println(intentExtra);
 
 
 

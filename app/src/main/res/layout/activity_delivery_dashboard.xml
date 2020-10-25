@@ -9,7 +9,7 @@
     <include
         android:id="@+id/common_logo_section"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         layout="@layout/common_logo"/>
 
     <LinearLayout
@@ -17,9 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/bottom_border"
         android:layout_below="@+id/common_logo_section">
 
         <TextView
@@ -62,20 +63,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_below="@+id/profile_info">
 
-        <TextView
-            android:id="@+id/order_list_text"
+        <RelativeLayout
+            android:id="@+id/order_top_sec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Order List"
-            android:textColor="@color/BLACK"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:gravity="left"/>
+            android:paddingBottom="10dp"
+            android:background="@drawable/bottom_border">
+
+            <TextView
+                android:id="@+id/order_list_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Order List"
+                android:textColor="@color/BLACK"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:gravity="left"/>
+
+            <Button
+                android:id="@+id/dashboard_reload_btn"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ripple_transparent_background"
+                android:textColor="@android:color/white"
+                android:text="Reload List"
+                android:textSize="16dp"
+                android:textAllCaps="false"
+                android:layout_alignParentRight="true"
+                android:onClick="reloadOrderListClickHandler"/>
+
+        </RelativeLayout>
 
         <ListView
             android:id="@+id/dashboard_order_list"
@@ -83,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="54dp"
-            android:layout_below="@+id/order_list_text"/>
+            android:layout_below="@+id/order_top_sec"/>
 
     </LinearLayout>
 

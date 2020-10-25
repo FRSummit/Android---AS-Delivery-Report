@@ -16,4 +16,5 @@ class ErrorMessages {
     public static final String NON_DELIVERY_MAN_BACK_BUTTON_PRESS = "Unable to go back...";
     public static final String DASHBOARD_BACK_BUTTON_PRESS = "Unable to go back.\nStay on this page and select your order.";
     public static final String NO_ORDER_FOUND_FOR_YOU = "You have no order to deliver.";
+    public static final String NO_ORDER_FOUND_FROM_DB = "You have no order. Please reload to get order";
 }

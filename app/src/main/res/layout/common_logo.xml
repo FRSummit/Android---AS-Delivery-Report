@@ -12,11 +12,11 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp">
 
-        <ImageView
-            android:id="@+id/main_logo_icon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/delivery_logo_activity_"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/main_logo_icon"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:src="@drawable/delivery_logo_activity_"/>-->
     </RelativeLayout>
 </FrameLayout>

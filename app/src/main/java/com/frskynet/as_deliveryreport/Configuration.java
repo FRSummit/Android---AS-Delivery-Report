@@ -45,4 +45,6 @@ public class Configuration {
     public static final String KEY_ACTION = "action";
 
     public static final String KEY_USERS = "records";
+
+    public static final String INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER = "ORDER_NUMBER";
 }

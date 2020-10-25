@@ -14,12 +14,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/main_logo_icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/delivery_logo_activity"/>
+<!--                <ImageView-->
+<!--                    android:id="@+id/main_logo_icon"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:src="@drawable/delivery_logo_activity"/>-->
 
         </RelativeLayout>
 

@@ -189,7 +189,7 @@ public class DataLoadFromSheet {
                             System.out.println(reportArrayList);
                             dbHelper = new DBHelper(context, null, null, 1);
                             dbHelper.removeAllFromDeliveryReport();
-                            dbHelper.addDeliveryReport(reportArrayList);
+//                            dbHelper.addDeliveryReport(reportArrayList);
                             loading.dismiss();
 
                         } catch (JSONException e) {

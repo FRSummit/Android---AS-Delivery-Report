@@ -76,35 +76,35 @@ class DBHelper extends SQLiteOpenHelper {
         this.getWritableDatabase().execSQL(QUERY);
     }
 
-//    public void addDeliveryReport(Report report) {
-//        String QUERY = "INSERT INTO DELIVERY_REPORT VALUES ('"
-//                                + report.getId() + "', '"
-//                                + report.getDeliveryManId() + "', '"
-//                                + report.getCustomerName() + "', '"
-//                                + report.getCustomerNameOverride() + "', '"
-//                                + report.getOrderNumber() + "', '"
-//                                + report.getOrderNumberOverride() + "', '"
-//                                + report.getOrderBy() + "', '"
-//                                + report.getOrderByOverride() + "', '"
-//                                + report.getOrderDate() + "', '"
-//                                + report.getOrderDateOverride() + "', '"
-//                                + report.getDeliveryDate() + "', '"
-//                                + report.getDeliveryDateOverride() + "', '"
-//                                + report.getDeliveredToName() + "', '"
-//                                + report.getDeliveredToNameOverride() + "', '"
-//                                + report.getStatus() + "', '"
-//                                + report.getComments() + "', '"
-//                                + report.getImageURL() + "', '"
-//                                + report.getSignatureURL() + "');";
-//        this.getWritableDatabase().execSQL(QUERY);
-//    }
+    public void addDeliveryReport(Report report) {
+        String QUERY = "INSERT INTO DELIVERY_REPORT VALUES ('"
+                                + report.getId() + "', '"
+                                + report.getDeliveryManId() + "', '"
+                                + report.getCustomerName() + "', '"
+                                + report.getCustomerNameOverride() + "', '"
+                                + report.getOrderNumber() + "', '"
+                                + report.getOrderNumberOverride() + "', '"
+                                + report.getOrderBy() + "', '"
+                                + report.getOrderByOverride() + "', '"
+                                + report.getOrderDate() + "', '"
+                                + report.getOrderDateOverride() + "', '"
+                                + report.getDeliveryDate() + "', '"
+                                + report.getDeliveryDateOverride() + "', '"
+                                + report.getDeliveredToName() + "', '"
+                                + report.getDeliveredToNameOverride() + "', '"
+                                + report.getStatus() + "', '"
+                                + report.getComments() + "', '"
+                                + report.getImageURL() + "', '"
+                                + report.getSignatureURL() + "');";
+        this.getWritableDatabase().execSQL(QUERY);
+    }
 
-    public void addDeliveryReport(ArrayList<Report> reportArrayList) {
+    /*public void addDeliveryReport(ArrayList<Report> reportArrayList) {
 
         for (int i = 0; i< reportArrayList.size(); i++) {
             Report report = new Report();
             report = reportArrayList.get(i);
-            System.out.println(">>>>>>>>>> " + report);
+            System.out.println(">>>>>>>>>> " + report.getId());
             String QUERY = "INSERT INTO DELIVERY_REPORT VALUES ('"
                                     + report.getId() + "', '"
                                     + report.getDeliveryManId() + "', '"
@@ -146,7 +146,7 @@ class DBHelper extends SQLiteOpenHelper {
 //                                + report.getImageURL() + "', '"
 //                                + report.getSignatureURL() + "');";
 //        this.getWritableDatabase().execSQL(QUERY);
-    }
+    }*/
 
     public ArrayList<DeliveryMan> getAllDeliveryMenList() {
         ArrayList<DeliveryMan> list = new ArrayList<>();
