@@ -5,12 +5,12 @@
     android:layout_height="wrap_content"
     tools:showIn="@layout/activity_main">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp">
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        android:layout_marginBottom="4dp">-->
 
 <!--        <ImageView-->
 <!--            android:id="@+id/main_logo_icon"-->
@@ -18,5 +18,40 @@
 <!--            android:layout_height="wrap_content"-->
 <!--            android:layout_centerHorizontal="true"-->
 <!--            android:src="@drawable/delivery_logo_activity_"/>-->
-    </RelativeLayout>
+<!--    </RelativeLayout>-->
+
+    <LinearLayout
+        android:id="@+id/main_logo_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="2dp"
+        android:background="@drawable/bottom_border">
+
+        <TextView
+            android:id="@+id/main_logo_icon_text_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delivery"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:textColor="@color/shasroy_color"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:includeFontPadding="false"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/main_logo_icon_text_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Amar Shasroy"
+            android:fontFamily="@font/league_spartan_regular"
+            android:textColor="@color/shasroy_color"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:layout_below="@+id/main_logo_icon_text_1"/>
+
+    </LinearLayout>
 </FrameLayout>

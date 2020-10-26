@@ -4,19 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeliveryReport"
-    android:background="@drawable/report_input_background">
+    tools:context=".DeliveryReport">
 
     <RelativeLayout
         android:id="@+id/common_logo_section"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="commonLogoClickHandler">
+        android:layout_height="wrap_content">
 
         <include
             android:id="@+id/common_logo_section_"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             layout="@layout/common_logo"/>
 
     </RelativeLayout>
@@ -25,8 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/common_logo_section"
-        android:padding="6dp"
-        android:layout_margin="4dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
         android:background="@drawable/input_border">
 
         <LinearLayout
@@ -34,11 +32,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/delivery_report_input_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:orientation="vertical"
                 android:padding="6dp"
                 android:gravity="left">
 
@@ -48,7 +46,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/delivery_report_on_behalf_of_input"
+                        android:id="@+id/delivery_report_customer_name"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:padding="15dp"
@@ -64,7 +62,7 @@
                     android:id="@+id/delivery_report_order_number_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_below="@+id/delivery_report_on_behalf_of_section">
 
                     <EditText
@@ -84,7 +82,7 @@
                     android:id="@+id/delivery_report_order_by_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_below="@+id/delivery_report_order_number_section">
 
                     <EditText
@@ -104,7 +102,7 @@
                     android:id="@+id/delivery_report_order_date_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/et_custom"
                     android:layout_below="@+id/delivery_report_order_by_section">
 
@@ -133,7 +131,7 @@
                     android:id="@+id/delivery_report_delivery_date_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/et_custom"
                     android:layout_below="@+id/delivery_report_order_date_section">
 
@@ -162,7 +160,7 @@
                     android:id="@+id/delivery_report_delivered_to_name_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_below="@+id/delivery_report_delivery_date_section">
 
                     <EditText
@@ -179,11 +177,31 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/delivery_report_status_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/delivery_report_delivered_to_name_section">
+
+                    <EditText
+                        android:id="@+id/delivery_report_status_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:padding="15dp"
+                        android:hint="@string/delivery_report_status_input_hint"
+                        android:textSize="18dp"
+                        android:textColor="@color/input_text_color"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:background="@drawable/et_custom"/>
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/delivery_report_comment_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_below="@+id/delivery_report_delivered_to_name_section">
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/delivery_report_status_section">
 
                     <EditText
                         android:id="@+id/delivery_report_comment_input"
@@ -198,28 +216,45 @@
                         android:background="@drawable/et_custom"/>
                 </RelativeLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/delivery_report_submit_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center"
+                    android:weightSum="2"
                     android:layout_below="@+id/delivery_report_comment_section">
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/delivery_report_submit_btn_text"
-                        android:textColor="#025377"
+                        android:textColor="@color/WHITE"
                         android:textSize="18dp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
+                        android:layout_marginRight="4dp"
                         android:textAllCaps="false"
                         android:onClick="deliveryReportSubmitHandler"
+                        android:layout_weight="1"
                         android:background="@drawable/ripple_transparent_background"/>
-                </RelativeLayout>
 
-            </RelativeLayout>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delivery_report_cancel_btn_text"
+                        android:textColor="@color/WHITE"
+                        android:textSize="18dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_marginLeft="4dp"
+                        android:textAllCaps="false"
+                        android:onClick="deliveryReportCancelHandler"
+                        android:layout_weight="1"
+                        android:background="@drawable/ripple_transparent_background"/>
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

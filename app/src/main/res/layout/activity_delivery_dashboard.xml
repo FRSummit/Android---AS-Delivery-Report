@@ -9,7 +9,7 @@
     <include
         android:id="@+id/common_logo_section"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         layout="@layout/common_logo"/>
 
     <LinearLayout
@@ -20,7 +20,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:paddingBottom="10dp"
-        android:background="@drawable/bottom_border"
         android:layout_below="@+id/common_logo_section">
 
         <TextView

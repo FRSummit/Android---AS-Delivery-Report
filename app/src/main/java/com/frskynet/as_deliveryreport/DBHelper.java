@@ -217,13 +217,11 @@ class DBHelper extends SQLiteOpenHelper {
                         list.add(deliveryReport);
                     } while (cursor.moveToNext());
                 }
-
             } finally {
                 try {
                     cursor.close();
                 } catch (Exception ignore) {}
             }
-
         } finally {
             try { db.close(); } catch (Exception ignore) {}
         }
