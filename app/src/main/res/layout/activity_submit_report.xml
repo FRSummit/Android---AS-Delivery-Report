@@ -9,13 +9,84 @@
     <include
         android:id="@+id/common_logo_section"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         layout="@layout/common_logo"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Repost Submit"
-        android:layout_below="@+id/common_logo_section"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_below="@+id/common_logo_section">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Report Details"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/BLACK"
+                    android:gravity="center"
+                    android:paddingBottom="4dp"
+                    android:background="@drawable/bottom_border"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textSize="18dp"
+                    android:textColor="@color/BLACK"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="F R Summit"
+                    android:textSize="18dp"
+                    android:textColor="@color/BLACK"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/report_submit_sec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/report_submit"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:onClick="submitReportHandler"
+                    android:text="Submit Report"
+                    android:textStyle="bold"
+                    android:textColor="@color/WHITE"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/ripple_transparent_background"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

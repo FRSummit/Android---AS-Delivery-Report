@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReportImageUpload"
-    android:background="@drawable/report_input_background">
+    tools:context=".ReportImageUpload">
 
     <include
         android:id="@+id/common_logo_section"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         layout="@layout/common_logo"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_below="@+id/common_logo_section">
 
         <LinearLayout
@@ -23,11 +24,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/report_image_upload_user_img_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/report_image_upload_usr_img_text"
@@ -39,39 +40,47 @@
                     android:textStyle="bold"
                     android:gravity="center"/>
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/report_image_upload_image_btn_selection_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:gravity="center"
-                    android:padding="10dp"
+                    android:paddingBottom="10dp"
+                    android:weightSum="2"
                     android:layout_below="@+id/report_image_upload_usr_img_text">
 
                     <Button
                         android:id="@+id/report_image_upload_select_camera"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
                         android:onClick="cameraBtnHandler"
                         android:text="Open Camera"
+                        android:textStyle="bold"
+                        android:textColor="@color/WHITE"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:textAllCaps="false"
+                        android:layout_weight="1"
                         android:background="@drawable/ripple_transparent_background"/>
 
                     <Button
                         android:id="@+id/report_image_upload_select_gallery"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
                         android:onClick="galleryBtnHandler"
                         android:text="Gallery Image"
+                        android:textStyle="bold"
+                        android:textColor="@color/WHITE"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:textAllCaps="false"
+                        android:layout_weight="1"
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@+id/report_image_upload_select_camera"
                         android:background="@drawable/ripple_transparent_background"/>
 
-                </RelativeLayout>
+                </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/report_image_upload_view_section"
@@ -79,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:gravity="center"
-                    android:background="@drawable/demo_img_background"
+                    android:background="@drawable/et_custom"
                     android:layout_below="@+id/report_image_upload_image_btn_selection_section">
 
                     <ImageView
@@ -91,12 +100,12 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/report_image_upload_submit_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
                     android:layout_marginTop="10dp"
+                    android:orientation="vertical"
                     android:gravity="center"
                     android:layout_below="@+id/report_image_upload_view_section">
 
@@ -106,18 +115,20 @@
                         android:layout_height="wrap_content"
                         android:onClick="uploadImageToServer"
                         android:text="Upload Image"
+                        android:textStyle="bold"
+                        android:textColor="@color/WHITE"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:textAllCaps="false"
                         android:background="@drawable/ripple_transparent_background"/>
-                </RelativeLayout>
+                </LinearLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/report_image_upload_sign_btn_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical"
                     android:gravity="center"
                     android:layout_below="@+id/report_image_upload_submit_section">
 
@@ -127,12 +138,14 @@
                         android:layout_height="wrap_content"
                         android:onClick="goToSignatureHandler"
                         android:text="Upload signature"
+                        android:textStyle="bold"
+                        android:textColor="@color/WHITE"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:textAllCaps="false"
                         android:background="@drawable/ripple_transparent_background"/>
-                </RelativeLayout>
-            </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

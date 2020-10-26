@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 public class SubmitReport extends Activity {
 
@@ -11,5 +12,8 @@ public class SubmitReport extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_report);
+    }
+
+    public void submitReportHandler(View view) {
     }
 }
