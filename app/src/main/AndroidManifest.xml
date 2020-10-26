@@ -22,8 +22,8 @@
         <activity android:name=".Signin" />
         <activity android:name=".NonDeliveryMan" />
         <activity android:name=".SubmitReport" />
-        <activity android:name=".SignatureUpload" />
 <!--        <activity android:name=".ReportImageUpload" />-->
+        <activity android:name=".SignatureUpload" />
         <activity android:name=".DeliveryReport" />
 <!--        <activity android:name=".MainActivity">-->
 
