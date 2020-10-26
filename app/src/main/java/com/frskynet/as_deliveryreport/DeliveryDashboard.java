@@ -170,12 +170,15 @@ public class DeliveryDashboard extends Activity {
                                     reportArrayList.add(report);
                                     dbHelper.addDeliveryReport(report);
 
-                                    toasterMessage = new ToasterMessage();
-                                    toasterMessage.showInformationToaster(DeliveryDashboard.this, "Your order list....");
+                                    Toast.makeText(DeliveryDashboard.this,"Your order list....", Toast.LENGTH_LONG).show();
+
+//                                    toasterMessage = new ToasterMessage();
+//                                    toasterMessage.showInformationToaster(DeliveryDashboard.this, "Your order list....");
                                 } else {
                                     if(i == (jarray.length()-1) && flag == false) {
-                                        toasterMessage = new ToasterMessage();
-                                        toasterMessage.showErrorToaster(DeliveryDashboard.this, NO_ORDER_FOUND_FOR_YOU);
+//                                        toasterMessage = new ToasterMessage();
+//                                        toasterMessage.showErrorToaster(DeliveryDashboard.this, NO_ORDER_FOUND_FOR_YOU);
+                                        Toast.makeText(DeliveryDashboard.this,"You have no order.\nCommunicate with Shasroy Manager", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             }
@@ -186,8 +189,9 @@ public class DeliveryDashboard extends Activity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            toasterMessage = new ToasterMessage();
-                            toasterMessage.showInformationToaster(DeliveryDashboard.this, "There is no order created.\nCommunicate with Shasroy Manager");
+                            Toast.makeText(DeliveryDashboard.this,"There is no order created.\\nCommunicate with Shasroy Manager", Toast.LENGTH_LONG).show();
+//                            toasterMessage = new ToasterMessage();
+//                            toasterMessage.showInformationToaster(DeliveryDashboard.this, "There is no order created.\nCommunicate with Shasroy Manager");
                             loading.dismiss();
                         }
                     }

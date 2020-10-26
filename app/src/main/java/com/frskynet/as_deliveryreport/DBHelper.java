@@ -107,7 +107,8 @@ class DBHelper extends SQLiteOpenHelper {
                                 + "ORDER_DATE_OVERRIDE = " + "'" + report.getOrderDateOverride() + "', "
                                 + "DELIVERY_DATE_OVERRIDE = " + "'" + report.getDeliveryDateOverride() + "', "
                                 + "DELIVERED_TO_NAME_OVERRIDE = " + "'" + report.getDeliveredToNameOverride() + "', "
-                                + "STATUS = " + "'" + report.getStatus() + "' "
+                                + "STATUS = " + "'" + report.getStatus() + "', "
+                                + "COMMENT = " + "'" + report.getComments() + "' "
                                 + " WHERE DELIVERY_REPORT_TABLE_ID = " + "'" + report.getId() + "'";
         this.getWritableDatabase().execSQL(QUERY);
     }
