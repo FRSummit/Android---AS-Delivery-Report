@@ -49,4 +49,7 @@ public class Configuration {
     public static final String KEY_USERS = "records";
 
     public static final String INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER = "ORDER_NUMBER";
+    public static final String DELIVERY_REPORT_TO_IMAGE_UPLOAD = "DELIVERY_REPORT_TO_IMAGE_UPLOAD";
+    public static final String IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD = "IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD";
+    public static final String SIGNATURE_UPLOAD_TO_REPORT_SUBMIT = "SIGNATURE_UPLOAD_TO_REPORT_SUBMIT";
 }

@@ -2,17 +2,18 @@ package com.frskynet.as_deliveryreport;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,11 +25,27 @@ import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.frskynet.as_deliveryreport.Configuration.APP_SCRIPT_WEB_APP_URL;
+import static com.frskynet.as_deliveryreport.Configuration.INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER;
+import static com.frskynet.as_deliveryreport.Configuration.DELIVERY_REPORT_TO_IMAGE_UPLOAD;
+import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD;
 
 public class ReportImageUpload extends Activity {
     private ImageView imageView;
@@ -39,6 +56,8 @@ public class ReportImageUpload extends Activity {
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int GALLERY_REQUEST_CODE = 105;
     private String currentPhotoPath;
+    private String intentExtra;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +65,15 @@ public class ReportImageUpload extends Activity {
         setContentView(R.layout.activity_report_image_upload);
 
         imageView = (ImageView) findViewById(R.id.report_image_upload_view_section_display_image);
+
+        dbHelper = new DBHelper(this, null, null, 1);
+
+        Intent intentText = getIntent();
+        Bundle extraText = intentText.getExtras();
+        if(extraText != null) {
+            intentExtra = (String) extraText.get(DELIVERY_REPORT_TO_IMAGE_UPLOAD);
+        }
+        System.out.println(intentExtra);
     }
 
     public void cameraBtnHandler(View view) {
@@ -92,7 +120,6 @@ public class ReportImageUpload extends Activity {
 //                ".jpg",         /* suffix */
 //                storageDir      /* directory */
 //        );
-        System.out.println("Image : " + image);
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
@@ -119,7 +146,10 @@ public class ReportImageUpload extends Activity {
                 Uri contentUri = Uri.fromFile(f);
                 mediaScanIntent.setData(contentUri);
                 this.sendBroadcast(mediaScanIntent);
-//                uploadImageToFirebase(f.getName(),contentUri);
+                BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+                Bitmap bitmap = drawable.getBitmap();
+                rbitmap = getResizedBitmap(bitmap, 250);//Setting the Bitmap to ImageView
+                userImage = getStringImage(rbitmap);
             }
         }
         if(requestCode == GALLERY_REQUEST_CODE){
@@ -128,7 +158,6 @@ public class ReportImageUpload extends Activity {
                 String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                 String imageFileName = "JPEG_" + timeStamp + "." + getFileExt(contentUri);
                 imageView.setImageURI(contentUri);
-//                uploadImageToFirebase(imageFileName,contentUri);
             }
         }
 
@@ -210,10 +239,49 @@ public class ReportImageUpload extends Activity {
     }
 
     public void uploadImageToServer(View view) {
+        if(userImage != null && !userImage.isEmpty()) {
+            final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...", false, false);
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, APP_SCRIPT_WEB_APP_URL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            loading.dismiss();
+                            Toast.makeText(ReportImageUpload.this, "Image uploaded successfully", Toast.LENGTH_LONG).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            loading.dismiss();
+                            Toast.makeText(ReportImageUpload.this, error.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("action", "UPLOAD_IMAGE");
+                    params.put("time", (new Date().toString()));
+                    params.put("image", userImage);
+
+                    return params;
+                }
+
+            };
+
+            int socketTimeout = 30000; // 30 seconds. You can change it
+            RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+            stringRequest.setRetryPolicy(policy);
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            requestQueue.add(stringRequest);
+        } else {
+            Toast.makeText(ReportImageUpload.this, "No Image exception", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void goToSignatureHandler(View view) {
-        startActivity(new Intent(this, SignatureUpload.class));
+        Intent intent = new Intent(this, SignatureUpload.class);
+        intent.putExtra(IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD, intentExtra);
+        startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }

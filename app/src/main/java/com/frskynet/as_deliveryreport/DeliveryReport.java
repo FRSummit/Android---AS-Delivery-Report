@@ -41,6 +41,7 @@ import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_D
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_DELIVERY_TO_NAME_OVERRIDE;
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_STATUS;
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_COMMENT;
+import static com.frskynet.as_deliveryreport.Configuration.DELIVERY_REPORT_TO_IMAGE_UPLOAD;
 
 public class DeliveryReport extends Activity {
 
@@ -148,7 +149,9 @@ public class DeliveryReport extends Activity {
 
         dbHelper.updateDeliveryReport(report);
 //        saveDateToSpreadsheet(report);
-        startActivity(new Intent(this, ReportImageUpload.class));
+        Intent intent = new Intent(this, ReportImageUpload.class);
+        intent.putExtra(DELIVERY_REPORT_TO_IMAGE_UPLOAD, report.getId());
+        startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
