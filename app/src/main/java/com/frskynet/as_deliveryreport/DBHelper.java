@@ -99,6 +99,20 @@ class DBHelper extends SQLiteOpenHelper {
         this.getWritableDatabase().execSQL(QUERY);
     }
 
+    public void updateDeliveryReport(Report report) {
+        System.out.println(report.getCustomerNameOverride());
+        String QUERY = "UPDATE DELIVERY_REPORT SET "
+                                + "CUSTOMER_NAME_OVERRIDE = " + "'" + report.getCustomerNameOverride() + "', "
+                                + "ORDER_NUMBER_OVERRIDE = " + "'" + report.getOrderDateOverride() + "', "
+                                + "ORDER_BY_OVERRIDE = " + "'" + report.getOrderByOverride() + "', "
+                                + "ORDER_DATE_OVERRIDE = " + "'" + report.getOrderDateOverride() + "', "
+                                + "DELIVERY_DATE_OVERRIDE = " + "'" + report.getDeliveryDateOverride() + "', "
+                                + "DELIVERED_TO_NAME_OVERRIDE = " + "'" + report.getDeliveredToNameOverride() + "', "
+                                + "STATUS = " + "'" + report.getStatus() + "' "
+                                + " WHERE DELIVERY_REPORT_TABLE_ID = " + "'" + report.getId() + "'";
+        this.getWritableDatabase().execSQL(QUERY);
+    }
+
     /*public void addDeliveryReport(ArrayList<Report> reportArrayList) {
 
         for (int i = 0; i< reportArrayList.size(); i++) {

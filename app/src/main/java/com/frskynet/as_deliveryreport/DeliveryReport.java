@@ -1,14 +1,46 @@
 package com.frskynet.as_deliveryreport;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.frskynet.as_deliveryreport.Configuration.ADD_REPORT_URL;
 import static com.frskynet.as_deliveryreport.Configuration.INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_ACTION_DELIVERY_REPORT_INSERT_INTO_SPREADSHEET;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ID;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_PARTNER_ID;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_CUSTOMER_NAME;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_CUSTOMER_NAME_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_NUMBER;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_NUMBER_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_BY;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_BY_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_DATE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_ORDER_DATE_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_DELIVERY_DATE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_DELIVERY_DATE_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_DELIVERY_TO_NAME;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_DELIVERY_TO_NAME_OVERRIDE;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_STATUS;
+import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_COMMENT;
 
 public class DeliveryReport extends Activity {
 
@@ -77,15 +109,14 @@ public class DeliveryReport extends Activity {
                 deliveredToName.setText(report.getDeliveredToName());
                 status.setText(report.getStatus());
                 comments.setText(report.getComments());
+
+                System.out.println(report.getCustomerNameOverride() + "\n" + report.getOrderByOverride() + "\n" + report.getOrderDateOverride() + "\n" + report.getDeliveryDateOverride() + "\n" + report.getDeliveredToNameOverride() + "\n" + report.getStatus());
             }
         }
 
     }
 
     public void deliveryReportSubmitHandler(View view) {
-//        startActivity(new Intent(this, ReportImageUpload.class));
-//        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
         Report report = new Report();
         report.setId(singleReport.getId());
         report.setDeliveryManId(singleReport.getDeliveryManId());
@@ -115,58 +146,63 @@ public class DeliveryReport extends Activity {
         report.setStatus(status.getText().toString().trim());
         report.setComments(comments.getText().toString().trim());
 
-        System.out.println(report);
-
-//        String day = "Day = " + orderDate.getDayOfMonth();
-//        String month = "Month = " + (orderDate.getMonth() + 1);
-//        String year = "Year = " + orderDate.getYear();
-//        // display the values by using a toast
-//        Toast.makeText(getApplicationContext(), day + "\n" + month + "\n" + year, Toast.LENGTH_LONG).show();
-//
-//        comments.setError("Please Enter a username!");
-
-
-
-        /*SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
-        Date date = new Date();
-//        System.out.println(formatter.format(date));
-
-        String id = "DELIVERY_REPORT_ID" + formatter.format(date);
-        String deliveryManId = "2014200000071";
-        String onBehalf = onBehalfOf.getText().toString().trim();
-        String orderNo = orderNumber.getText().toString().trim();
-        String orderBY = orderBy.getText().toString().trim();
-        String orderDt = "" + orderDate.getDayOfMonth() + "-" + orderDate.getMonth() + "-" + orderDate.getYear();
-        String deliveryDt = "" + deliveryDate.getDayOfMonth() + "-" + deliveryDate.getMonth() + "-" + deliveryDate.getYear();
-        String deliveryTo = deliveredToName.getText().toString().trim();
-        String cmnt = comments.getText().toString().trim();
-
-        if(!onBehalf.isEmpty() && !orderNo.isEmpty() && !orderBY.isEmpty() && !orderDt.isEmpty() && !deliveryDt.isEmpty() && !deliveryTo.isEmpty() && !cmnt.isEmpty()) {
-            Report report = new Report(id, "2014200000071", onBehalf, orderNo, orderBY, orderDt, deliveryDt, deliveryTo, cmnt);
-            dbHelper.addDeliveryReport(report);
-
-            onBehalfOf.setText("");
-            orderNumber.setText("");
-            orderBy.setText("");
-            deliveredToName.setText("");
-            comments.setText("");
-
-        } else {
-            if(onBehalf.isEmpty()) {
-                onBehalfOf.setError("Raise the request on behalf of should not be empty");
-            } if(orderNo.isEmpty()) {
-                orderNumber.setError("Order number should not be empty");
-            } if(orderBY.isEmpty()) {
-                orderBy.setError("Order by should not be empty");
-            } if(deliveryTo.isEmpty()) {
-                deliveredToName.setError("Delivery to name should not be empty");
-            } if(cmnt.isEmpty()) {
-                comments.setError("Comment should not be empty");
-            }
-        }*/
+        dbHelper.updateDeliveryReport(report);
+//        saveDateToSpreadsheet(report);
+        startActivity(new Intent(this, ReportImageUpload.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     public void deliveryReportCancelHandler(View view) {
         startActivity(new Intent(DeliveryReport.this, DeliveryDashboard.class));
+    }
+
+    public void saveDateToSpreadsheet(final Report report) {
+        final ProgressDialog loading = ProgressDialog.show(this,"Your order is loading","Please wait until loading process finish...",false,false);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ADD_REPORT_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        loading.dismiss();
+                        Toast.makeText(DeliveryReport.this, response, Toast.LENGTH_LONG).show();
+                        System.out.println("Response\n" + response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(DeliveryReport.this, error.toString(), Toast.LENGTH_LONG).show();
+                        System.out.println("Error\n" + error);
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(KEY_ACTION_DELIVERY_REPORT_INSERT_INTO_SPREADSHEET, "INSERT_REPORT");
+                params.put(KEY_DELIVERY_REPORT_ID, report.getId());
+                params.put(KEY_DELIVERY_REPORT_PARTNER_ID, report.getDeliveryManId());
+                params.put(KEY_DELIVERY_REPORT_CUSTOMER_NAME, report.getCustomerName());
+                params.put(KEY_DELIVERY_REPORT_CUSTOMER_NAME_OVERRIDE, report.getCustomerNameOverride());
+                params.put(KEY_DELIVERY_REPORT_ORDER_NUMBER, report.getOrderNumber());
+                params.put(KEY_DELIVERY_REPORT_ORDER_NUMBER_OVERRIDE, report.getOrderNumberOverride());
+                params.put(KEY_DELIVERY_REPORT_ORDER_BY, report.getOrderBy());
+                params.put(KEY_DELIVERY_REPORT_ORDER_BY_OVERRIDE, report.getOrderByOverride());
+                params.put(KEY_DELIVERY_REPORT_ORDER_DATE, report.getOrderDate());
+                params.put(KEY_DELIVERY_REPORT_ORDER_DATE_OVERRIDE, report.getOrderDateOverride());
+                params.put(KEY_DELIVERY_REPORT_DELIVERY_DATE, report.getDeliveryDate());
+                params.put(KEY_DELIVERY_REPORT_DELIVERY_DATE_OVERRIDE, report.getDeliveryDateOverride());
+                params.put(KEY_DELIVERY_REPORT_DELIVERY_TO_NAME, report.getDeliveredToName());
+                params.put(KEY_DELIVERY_REPORT_DELIVERY_TO_NAME_OVERRIDE, report.getDeliveredToNameOverride());
+                params.put(KEY_DELIVERY_REPORT_STATUS, report.getStatus());
+                params.put(KEY_DELIVERY_REPORT_COMMENT, report.getComments());
+
+                return params;
+            }
+        };
+
+        int socketTimeout = 30000; // 30 seconds. You can change it
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }
