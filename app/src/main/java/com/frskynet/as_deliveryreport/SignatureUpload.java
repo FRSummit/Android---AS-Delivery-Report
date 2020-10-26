@@ -38,6 +38,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +47,7 @@ import java.util.TimerTask;
 
 import static com.frskynet.as_deliveryreport.Configuration.APP_SCRIPT_WEB_APP_URL;
 import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD;
+import static com.frskynet.as_deliveryreport.Configuration.SIGNATURE_UPLOAD_TO_REPORT_SUBMIT;
 
 public class SignatureUpload extends Activity {
     private Button button;
@@ -57,6 +59,7 @@ public class SignatureUpload extends Activity {
     private String userImage;
     private DBHelper dbHelper;
     private String intentExtra;
+    private ArrayList<String> imageUrlList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +68,14 @@ public class SignatureUpload extends Activity {
 
         imageView = (ImageView) findViewById(R.id.report_image_upload_select_camera_usr_sign_display_image);
         button = (Button) findViewById(R.id.report_sign_upload_usr_sign_submit);
-
         dbHelper = new DBHelper(this, null, null, 1);
+        imageUrlList = new ArrayList<>();
 
         Intent intentText = getIntent();
         Bundle extraText = intentText.getExtras();
         if(extraText != null) {
             intentExtra = (String) extraText.get(IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD);
         }
-        System.out.println(intentExtra);
     }
 
     public void cameraBtnHandlerForSignature(View view) {
@@ -193,7 +195,7 @@ public class SignatureUpload extends Activity {
                             loading.dismiss();
                             button.setEnabled(false);
                             Toast.makeText(SignatureUpload.this, "Signature successfully uploaded", Toast.LENGTH_LONG).show();
-                            System.out.println(response);
+                            dbHelper.updateDeliveryReportSignatureImageUrl(intentExtra, response.split(" ")[1]);
                             changeActivity();
                         }
                     },
@@ -230,15 +232,9 @@ public class SignatureUpload extends Activity {
     }
 
     private void changeActivity() {
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SignatureUpload.this, SubmitReport.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        };
-        Timer timer = new Timer();
-        timer.schedule(task, 2000);
+        Intent intent = new Intent(SignatureUpload.this, SubmitReport.class);
+        intent.putExtra(SIGNATURE_UPLOAD_TO_REPORT_SUBMIT, intentExtra);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }

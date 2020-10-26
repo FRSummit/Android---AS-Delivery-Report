@@ -100,7 +100,6 @@ class DBHelper extends SQLiteOpenHelper {
     }
 
     public void updateDeliveryReport(Report report) {
-        System.out.println(report.getCustomerNameOverride());
         String QUERY = "UPDATE DELIVERY_REPORT SET "
                                 + "CUSTOMER_NAME_OVERRIDE = " + "'" + report.getCustomerNameOverride() + "', "
                                 + "ORDER_NUMBER_OVERRIDE = " + "'" + report.getOrderDateOverride() + "', "
@@ -110,6 +109,20 @@ class DBHelper extends SQLiteOpenHelper {
                                 + "DELIVERED_TO_NAME_OVERRIDE = " + "'" + report.getDeliveredToNameOverride() + "', "
                                 + "STATUS = " + "'" + report.getStatus() + "' "
                                 + " WHERE DELIVERY_REPORT_TABLE_ID = " + "'" + report.getId() + "'";
+        this.getWritableDatabase().execSQL(QUERY);
+    }
+
+    public void updateDeliveryReportImageUrl(String reportId, String url) {
+        String QUERY = "UPDATE DELIVERY_REPORT SET "
+                + "IMAGE_URL = " + "'" + url + "' "
+                + " WHERE DELIVERY_REPORT_TABLE_ID = " + "'" + reportId + "'";
+        this.getWritableDatabase().execSQL(QUERY);
+    }
+
+    public void updateDeliveryReportSignatureImageUrl(String reportId, String url) {
+        String QUERY = "UPDATE DELIVERY_REPORT SET "
+                + "SIGNATURE_URL = " + "'" + url + "' "
+                + " WHERE DELIVERY_REPORT_TABLE_ID = " + "'" + reportId + "'";
         this.getWritableDatabase().execSQL(QUERY);
     }
 

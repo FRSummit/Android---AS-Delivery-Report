@@ -38,6 +38,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,6 +59,7 @@ public class ReportImageUpload extends Activity {
     private String currentPhotoPath;
     private String intentExtra;
     private DBHelper dbHelper;
+    private ArrayList<String> imageUrlList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +67,14 @@ public class ReportImageUpload extends Activity {
         setContentView(R.layout.activity_report_image_upload);
 
         imageView = (ImageView) findViewById(R.id.report_image_upload_view_section_display_image);
-
         dbHelper = new DBHelper(this, null, null, 1);
+        imageUrlList = new ArrayList<>();
 
         Intent intentText = getIntent();
         Bundle extraText = intentText.getExtras();
         if(extraText != null) {
             intentExtra = (String) extraText.get(DELIVERY_REPORT_TO_IMAGE_UPLOAD);
         }
-        System.out.println(intentExtra);
     }
 
     public void cameraBtnHandler(View view) {
@@ -247,6 +248,7 @@ public class ReportImageUpload extends Activity {
                         public void onResponse(String response) {
                             loading.dismiss();
                             Toast.makeText(ReportImageUpload.this, "Image uploaded successfully", Toast.LENGTH_LONG).show();
+                            imageUrlList.add(response.split(" ")[1]);
                         }
                     },
                     new Response.ErrorListener() {
@@ -279,9 +281,16 @@ public class ReportImageUpload extends Activity {
     }
 
     public void goToSignatureHandler(View view) {
+        String url = "";
+        for (int i=0; i< imageUrlList.size(); i++) {
+            url += imageUrlList.get(i) + "\n";
+        }
+        dbHelper.updateDeliveryReportImageUrl(intentExtra, url);
+
         Intent intent = new Intent(this, SignatureUpload.class);
         intent.putExtra(IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD, intentExtra);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     }
 }

@@ -66,6 +66,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/reportID"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="1001"
@@ -88,6 +89,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/deliveryPartnerId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="2014200000071"
@@ -110,6 +112,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/cName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Shahed Khan"
@@ -132,6 +135,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/cNameOr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Shahed Khan K"
@@ -154,6 +158,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/orderNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="O-202"
@@ -176,6 +181,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/orderNoOr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="O-2020"
@@ -198,6 +204,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/orderBy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Summit"
@@ -220,6 +227,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/orderByOr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="F R Summit"
@@ -242,6 +250,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/orderDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20-10-2020"
@@ -264,6 +273,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/orderDateOr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20-10-2020"
@@ -286,6 +296,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/deliveryDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="26-10-2020"
@@ -308,6 +319,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/deliveryDateOr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="25-10-2020"
@@ -330,6 +342,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/deliveryToName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Babu"
@@ -352,6 +365,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/deliveryToNameOr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Babu Khan"
@@ -374,6 +388,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/status"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Delivered"
@@ -396,6 +411,7 @@
                         android:textColor="@color/shasroy_color"/>
 
                     <TextView
+                        android:id="@+id/comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="No comment"
@@ -404,48 +420,50 @@
                 </LinearLayout>
 
                 <!--Report Image URL-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_marginTop="10dp">-->
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:text="Image URL"
-                        android:textSize="18dp"
-                        android:textColor="@color/shasroy_color"/>
+<!--                    <TextView-->
+<!--                        android:layout_width="150dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Image URL"-->
+<!--                        android:textSize="18dp"-->
+<!--                        android:textColor="@color/shasroy_color"/>-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="www.amarshasroy.com"
-                        android:textSize="18dp"
-                        android:textColor="@color/BLACK"/>
-                </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:id="@+id/imgURL"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="www.amarshasroy.com"-->
+<!--                        android:textSize="18dp"-->
+<!--                        android:textColor="@color/BLACK"/>-->
+<!--                </LinearLayout>-->
 
                 <!--Report Signature URL-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_marginTop="10dp">-->
 
-                    <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:text="Signature URL"
-                        android:textSize="18dp"
-                        android:textColor="@color/shasroy_color"/>
+<!--                    <TextView-->
+<!--                        android:layout_width="150dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Signature URL"-->
+<!--                        android:textSize="18dp"-->
+<!--                        android:textColor="@color/shasroy_color"/>-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="www.amarshasroy.com"
-                        android:textSize="18dp"
-                        android:textColor="@color/BLACK"/>
-                </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:id="@+id/signURL"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="www.amarshasroy.com"-->
+<!--                        android:textSize="18dp"-->
+<!--                        android:textColor="@color/BLACK"/>-->
+<!--                </LinearLayout>-->
 
             </LinearLayout>
 

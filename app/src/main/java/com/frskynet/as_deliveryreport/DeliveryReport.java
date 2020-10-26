@@ -111,7 +111,8 @@ public class DeliveryReport extends Activity {
                 status.setText(report.getStatus());
                 comments.setText(report.getComments());
 
-                System.out.println(report.getCustomerNameOverride() + "\n" + report.getOrderByOverride() + "\n" + report.getOrderDateOverride() + "\n" + report.getDeliveryDateOverride() + "\n" + report.getDeliveredToNameOverride() + "\n" + report.getStatus());
+//                System.out.println(report.getCustomerNameOverride() + "\n" + report.getOrderByOverride() + "\n" + report.getOrderDateOverride() + "\n" + report.getDeliveryDateOverride() + "\n" + report.getDeliveredToNameOverride() + "\n" + report.getStatus());
+//                System.out.println(report.getImageURL());
             }
         }
 
@@ -157,55 +158,5 @@ public class DeliveryReport extends Activity {
 
     public void deliveryReportCancelHandler(View view) {
         startActivity(new Intent(DeliveryReport.this, DeliveryDashboard.class));
-    }
-
-    public void saveDateToSpreadsheet(final Report report) {
-        final ProgressDialog loading = ProgressDialog.show(this,"Your order is loading","Please wait until loading process finish...",false,false);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, ADD_REPORT_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        loading.dismiss();
-                        Toast.makeText(DeliveryReport.this, response, Toast.LENGTH_LONG).show();
-                        System.out.println("Response\n" + response);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(DeliveryReport.this, error.toString(), Toast.LENGTH_LONG).show();
-                        System.out.println("Error\n" + error);
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put(KEY_ACTION_DELIVERY_REPORT_INSERT_INTO_SPREADSHEET, "INSERT_REPORT");
-                params.put(KEY_DELIVERY_REPORT_ID, report.getId());
-                params.put(KEY_DELIVERY_REPORT_PARTNER_ID, report.getDeliveryManId());
-                params.put(KEY_DELIVERY_REPORT_CUSTOMER_NAME, report.getCustomerName());
-                params.put(KEY_DELIVERY_REPORT_CUSTOMER_NAME_OVERRIDE, report.getCustomerNameOverride());
-                params.put(KEY_DELIVERY_REPORT_ORDER_NUMBER, report.getOrderNumber());
-                params.put(KEY_DELIVERY_REPORT_ORDER_NUMBER_OVERRIDE, report.getOrderNumberOverride());
-                params.put(KEY_DELIVERY_REPORT_ORDER_BY, report.getOrderBy());
-                params.put(KEY_DELIVERY_REPORT_ORDER_BY_OVERRIDE, report.getOrderByOverride());
-                params.put(KEY_DELIVERY_REPORT_ORDER_DATE, report.getOrderDate());
-                params.put(KEY_DELIVERY_REPORT_ORDER_DATE_OVERRIDE, report.getOrderDateOverride());
-                params.put(KEY_DELIVERY_REPORT_DELIVERY_DATE, report.getDeliveryDate());
-                params.put(KEY_DELIVERY_REPORT_DELIVERY_DATE_OVERRIDE, report.getDeliveryDateOverride());
-                params.put(KEY_DELIVERY_REPORT_DELIVERY_TO_NAME, report.getDeliveredToName());
-                params.put(KEY_DELIVERY_REPORT_DELIVERY_TO_NAME_OVERRIDE, report.getDeliveredToNameOverride());
-                params.put(KEY_DELIVERY_REPORT_STATUS, report.getStatus());
-                params.put(KEY_DELIVERY_REPORT_COMMENT, report.getComments());
-
-                return params;
-            }
-        };
-
-        int socketTimeout = 30000; // 30 seconds. You can change it
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(policy);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
     }
 }
