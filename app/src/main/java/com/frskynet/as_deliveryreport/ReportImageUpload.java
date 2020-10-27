@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -19,12 +18,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,7 +30,6 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +40,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.frskynet.as_deliveryreport.Configuration.APP_SCRIPT_WEB_APP_URL;
-import static com.frskynet.as_deliveryreport.Configuration.INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER;
 import static com.frskynet.as_deliveryreport.Configuration.DELIVERY_REPORT_TO_IMAGE_UPLOAD;
 import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD;
 
@@ -110,17 +105,11 @@ public class ReportImageUpload extends Activity {
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-//        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);  // For Emulator
-        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES); // For Real device
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg"         /* suffix */
+                imageFileName,
+                ".jpg"
         );
-//        File image = File.createTempFile(
-//                imageFileName,  /* prefix */
-//                ".jpg",         /* suffix */
-//                storageDir      /* directory */
-//        );
         currentPhotoPath = image.getAbsolutePath();
         return image;
     }
@@ -149,7 +138,7 @@ public class ReportImageUpload extends Activity {
                 this.sendBroadcast(mediaScanIntent);
                 BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
                 Bitmap bitmap = drawable.getBitmap();
-                rbitmap = getResizedBitmap(bitmap, 250);//Setting the Bitmap to ImageView
+                rbitmap = getResizedBitmap(bitmap, 250);
                 userImage = getStringImage(rbitmap);
             }
         }
@@ -165,9 +154,8 @@ public class ReportImageUpload extends Activity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri filePath = data.getData();
             try {
-                //Getting the Bitmap from Gallery
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                rbitmap = getResizedBitmap(bitmap, 250);//Setting the Bitmap to ImageView
+                rbitmap = getResizedBitmap(bitmap, 250);
                 userImage = getStringImage(rbitmap);
                 imageView.setImageBitmap(rbitmap);
             } catch (IOException e) {
@@ -182,12 +170,10 @@ public class ReportImageUpload extends Activity {
         return mime.getExtensionFromMimeType(c.getType(contentUri));
     }
 
-    //    Gallery Button Click: Part -1
     public void galleryBtnHandler(View view) {
         showFileChooser();
     }
 
-    //    Gallery Button Click: Part -2 -> Choose file from gallery
     private void showFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -195,26 +181,6 @@ public class ReportImageUpload extends Activity {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
-    //    Gallery Button Click: Part -3 -> After choosing you will get a action result where we can see the loaded image.
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri filePath = data.getData();
-            try {
-                //Getting the Bitmap from Gallery
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                rbitmap = getResizedBitmap(bitmap, 250);//Setting the Bitmap to ImageView
-                userImage = getStringImage(rbitmap);
-                imageView.setImageBitmap(rbitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }*/
-
-    //    Gallery Button Click: Part -4 -> here image will resize by our ratio
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();
         int height = image.getHeight();
@@ -229,7 +195,6 @@ public class ReportImageUpload extends Activity {
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
 
-    //    Gallery Button Click: Part -1 -> This will convert the image as byte string
     public String getStringImage(Bitmap bmp) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);

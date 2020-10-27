@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,7 +15,6 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,10 +35,8 @@ import static com.frskynet.as_deliveryreport.ErrorMessages.SIGN_IN_USERNAME_ERRO
 import static com.frskynet.as_deliveryreport.ErrorMessages.SIGN_IN_PASSWORD_ERROR_MESSAGE;
 
 public class Signin extends Activity {
-
     private EditText username;
     private EditText password;
-    private DataLoadFromSheet dataLoadFromSheet;
     private ToasterMessage toasterMessage;
     private DBHelper dbHelper;
     boolean flag = false;
@@ -52,8 +48,6 @@ public class Signin extends Activity {
 
         username = (EditText) findViewById(R.id.et_email);
         password = (EditText) findViewById(R.id.et_password);
-
-        dataLoadFromSheet = new DataLoadFromSheet();
     }
 
     public void visitWebsiteHandler(View view) {
@@ -67,7 +61,6 @@ public class Signin extends Activity {
 
         if(!usrName.isEmpty() && !usrPass.isEmpty()) {
             final ProgressDialog loading = ProgressDialog.show(this,"Checking your submission","Please wait until loading process finish...",false,false);
-//            dataLoadFromSheet.loadDeliveryPartnerData(this.getApplicationContext(), usrName, usrPass, loading);
             StringRequest stringRequest = new StringRequest(Request.Method.GET, GET_DELIVERY_PARTNER_URL,
                     new Response.Listener<String>() {
                         @Override
@@ -142,7 +135,6 @@ public class Signin extends Activity {
             stringRequest.setRetryPolicy(policy);
             RequestQueue queue = Volley.newRequestQueue(Signin.this);
             queue.add(stringRequest);
-//            dataLoadFromSheet.loadDeliveryReportData(this.getApplicationContext());
         } else {
             if(usrName.isEmpty()) {
                 username.setError(SIGN_IN_USERNAME_ERROR_MESSAGE);

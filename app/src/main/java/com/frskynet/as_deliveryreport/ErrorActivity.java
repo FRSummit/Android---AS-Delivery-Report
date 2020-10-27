@@ -1,13 +1,9 @@
 package com.frskynet.as_deliveryreport;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
-import static com.frskynet.as_deliveryreport.ErrorMessages.ACCESS_DENIED;
 
 public class ErrorActivity extends Activity {
     private TextView errorMessage;

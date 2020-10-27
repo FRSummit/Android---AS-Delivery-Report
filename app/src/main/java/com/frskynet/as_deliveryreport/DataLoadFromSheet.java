@@ -3,8 +3,6 @@ package com.frskynet.as_deliveryreport;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,11 +11,9 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 import static com.frskynet.as_deliveryreport.Configuration.GET_DELIVERY_PARTNER_URL;
@@ -189,7 +185,6 @@ public class DataLoadFromSheet {
                             System.out.println(reportArrayList);
                             dbHelper = new DBHelper(context, null, null, 1);
                             dbHelper.removeAllFromDeliveryReport();
-//                            dbHelper.addDeliveryReport(reportArrayList);
                             loading.dismiss();
 
                         } catch (JSONException e) {

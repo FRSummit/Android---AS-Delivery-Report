@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,13 +20,10 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -51,7 +47,6 @@ import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_P
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_SIGNATURE_URL;
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_STATUS;
 import static com.frskynet.as_deliveryreport.ErrorMessages.DASHBOARD_BACK_BUTTON_PRESS;
-import static com.frskynet.as_deliveryreport.ErrorMessages.NO_ORDER_FOUND_FOR_YOU;
 import static com.frskynet.as_deliveryreport.ErrorMessages.NO_ORDER_FOUND_FROM_DB;
 import static com.frskynet.as_deliveryreport.Configuration.INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER;
 
@@ -169,15 +164,9 @@ public class DeliveryDashboard extends Activity {
                                     reportOrderNumbersList.add(jo.getString(KEY_DELIVERY_REPORT_ORDER_NUMBER));
                                     reportArrayList.add(report);
                                     dbHelper.addDeliveryReport(report);
-
                                     Toast.makeText(DeliveryDashboard.this,"Your order list....", Toast.LENGTH_LONG).show();
-
-//                                    toasterMessage = new ToasterMessage();
-//                                    toasterMessage.showInformationToaster(DeliveryDashboard.this, "Your order list....");
                                 } else {
                                     if(i == (jarray.length()-1) && flag == false) {
-//                                        toasterMessage = new ToasterMessage();
-//                                        toasterMessage.showErrorToaster(DeliveryDashboard.this, NO_ORDER_FOUND_FOR_YOU);
                                         Toast.makeText(DeliveryDashboard.this,"You have no order.\nCommunicate with Shasroy Manager", Toast.LENGTH_LONG).show();
                                     }
                                 }
@@ -190,8 +179,6 @@ public class DeliveryDashboard extends Activity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(DeliveryDashboard.this,"There is no order created.\\nCommunicate with Shasroy Manager", Toast.LENGTH_LONG).show();
-//                            toasterMessage = new ToasterMessage();
-//                            toasterMessage.showInformationToaster(DeliveryDashboard.this, "There is no order created.\nCommunicate with Shasroy Manager");
                             loading.dismiss();
                         }
                     }

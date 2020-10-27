@@ -3,13 +3,11 @@ package com.frskynet.as_deliveryreport;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends Activity {
-
     private DBHelper dbHelper;
     private ArrayList<DeliveryMan> list;
 
@@ -18,23 +16,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        DeliveryMan deliveryMan = new DeliveryMan();
-//        deliveryMan.setId("2014200000071");
-//        deliveryMan.setUsername("frsummit");
-//        deliveryMan.setPassword("developer001");
-//
-//        DeliveryMan deliveryMan2 = new DeliveryMan();
-//        deliveryMan2.setId("20160000000059");
-//        deliveryMan2.setUsername("rimi");
-//        deliveryMan2.setPassword("developer002");
-
         dbHelper = new DBHelper(this, null, null, 1);
-//        dbHelper.removeAllTable();
-//        dbHelper.addLoginDetails(deliveryMan);
-//        dbHelper.addLoginDetails(deliveryMan2);
-
         list = new ArrayList<>();
-
         changeActivity();
     }
 
@@ -50,8 +33,6 @@ public class MainActivity extends Activity {
                     startActivity(new Intent(MainActivity.this, DeliveryDashboard.class));
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
-//                startActivity(new Intent(MainActivity.this, DeliveryReport.class));
-//                startActivity(new Intent(MainActivity.this, NonDeliveryMan.class));
             }
         };
         Timer timer = new Timer();
