@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:padding="8dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/ripple_transparent_background">
+
+    <TextView
+        android:id="@+id/single_list_item_image"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:text="AS"
+        android:gravity="center"
+        android:fontFamily="@font/league_spartan_regular"
+        android:textSize="30dp"
+        android:textColor="@color/WHITE"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/single_list_item_order_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order no: 12345"
+        android:textSize="18dp"
+        android:textColor="@color/WHITE"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/single_list_item_image"
+        android:layout_toEndOf="@+id/single_list_item_image"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp" />
+
+    <TextView
+        android:id="@+id/single_list_item_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status: Pending"
+        android:textSize="12dp"
+        android:textColor="@color/WHITE"
+        android:maxLines="1"
+        android:layout_below="@+id/single_list_item_order_number"
+        android:layout_alignLeft="@+id/single_list_item_order_number"
+        android:layout_alignStart="@+id/single_list_item_order_number" />
+
+</RelativeLayout>

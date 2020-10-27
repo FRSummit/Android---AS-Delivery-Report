@@ -59,11 +59,14 @@ public class DeliveryDashboard extends Activity {
     private ArrayList<DeliveryMan> deliveryManList;
     private ArrayList<Report> reportArrayList;
     private ArrayList<String> reportOrderNumbersList;
+    private ArrayList<String> reportStatusList;
     private ArrayAdapter<String> arrayAdapter;
     private ToasterMessage toasterMessage;
     private DataLoadFromSheet dataLoadFromSheet;
     private ArrayList<String> orderList;
+    private ArrayList<String> statusList;
     boolean flag = false;
+    private DeliveryDashboardListAdapter deliveryDashboardListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +81,9 @@ public class DeliveryDashboard extends Activity {
         dataLoadFromSheet = new DataLoadFromSheet();
         toasterMessage = new ToasterMessage();
         reportOrderNumbersList = new ArrayList<>();
+        reportStatusList = new ArrayList<>();
         orderList = new ArrayList<>();
+        statusList = new ArrayList<>();
         reportArrayList = new ArrayList<>();
 
         setUserInformation();
@@ -115,9 +120,12 @@ public class DeliveryDashboard extends Activity {
     private void loadOrderFromDB() {
         for(int i=0; i< reportArrayList.size(); i++) {
             orderList.add(reportArrayList.get(i).getOrderNumber());
+            statusList.add(reportArrayList.get(i).getStatus());
         }
-        arrayAdapter = new ArrayAdapter<String>(DeliveryDashboard.this, android.R.layout.simple_list_item_1, orderList);
-        reportList.setAdapter(arrayAdapter);
+//        arrayAdapter = new ArrayAdapter<String>(DeliveryDashboard.this, android.R.layout.simple_list_item_1, orderList);
+//        reportList.setAdapter(arrayAdapter);
+        deliveryDashboardListAdapter = new DeliveryDashboardListAdapter(DeliveryDashboard.this, orderList, statusList);
+        reportList.setAdapter(deliveryDashboardListAdapter);
         orderNumberClickListener(reportList);
     }
 
@@ -128,6 +136,7 @@ public class DeliveryDashboard extends Activity {
 
     public void orderLoad (final String deliveryPartnerId) {
         reportOrderNumbersList.clear();
+        reportStatusList.clear();
         dbHelper.removeAllFromDeliveryReport();
         final ProgressDialog loading = ProgressDialog.show(this,"Your order is loading","Please wait until loading process finish...",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, GET_DELIVERY_REPORT_LIST_URL,
@@ -162,6 +171,7 @@ public class DeliveryDashboard extends Activity {
                                     report.setSignatureURL(jo.getString(KEY_DELIVERY_REPORT_SIGNATURE_URL));
 
                                     reportOrderNumbersList.add(jo.getString(KEY_DELIVERY_REPORT_ORDER_NUMBER));
+                                    reportStatusList.add(jo.getString(KEY_DELIVERY_REPORT_STATUS));
                                     reportArrayList.add(report);
                                     dbHelper.addDeliveryReport(report);
                                     Toast.makeText(DeliveryDashboard.this,"Your order list....", Toast.LENGTH_LONG).show();
@@ -171,8 +181,10 @@ public class DeliveryDashboard extends Activity {
                                     }
                                 }
                             }
-                            arrayAdapter = new ArrayAdapter<String>(DeliveryDashboard.this, android.R.layout.simple_list_item_1, reportOrderNumbersList);
-                            reportList.setAdapter(arrayAdapter);
+//                            arrayAdapter = new ArrayAdapter<String>(DeliveryDashboard.this, android.R.layout.simple_list_item_1, reportOrderNumbersList);
+//                            reportList.setAdapter(arrayAdapter);
+                            deliveryDashboardListAdapter = new DeliveryDashboardListAdapter(DeliveryDashboard.this, reportOrderNumbersList, reportStatusList);
+                            reportList.setAdapter(deliveryDashboardListAdapter);
                             orderNumberClickListener(reportList);
                             loading.dismiss();
 
