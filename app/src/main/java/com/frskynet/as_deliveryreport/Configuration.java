@@ -46,4 +46,9 @@ public class Configuration {
     public static final String DELIVERY_REPORT_TO_IMAGE_UPLOAD = "DELIVERY_REPORT_TO_IMAGE_UPLOAD";
     public static final String IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD = "IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD";
     public static final String SIGNATURE_UPLOAD_TO_REPORT_SUBMIT = "SIGNATURE_UPLOAD_TO_REPORT_SUBMIT";
+
+    public static final String IMAGE_UPLOAD_PARAM = "action";
+    public static final String IMAGE_UPLOAD_PARAM_ACTION = "UPLOAD_IMAGE";
+    public static final String IMAGE_UPLOAD_PARAM_PARAMETER_TIME = "time";
+    public static final String IMAGE_UPLOAD_PARAM_PARAMETER_IMAGE = "image";
 }

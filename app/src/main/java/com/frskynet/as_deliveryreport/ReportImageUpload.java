@@ -42,6 +42,10 @@ import java.util.Map;
 import static com.frskynet.as_deliveryreport.Configuration.APP_SCRIPT_WEB_APP_URL;
 import static com.frskynet.as_deliveryreport.Configuration.DELIVERY_REPORT_TO_IMAGE_UPLOAD;
 import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD;
+import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_PARAM;
+import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_PARAM_ACTION;
+import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_PARAM_PARAMETER_TIME;
+import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_PARAM_PARAMETER_IMAGE;
 
 public class ReportImageUpload extends Activity {
     private ImageView imageView;
@@ -226,9 +230,9 @@ public class ReportImageUpload extends Activity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("action", "UPLOAD_IMAGE");
-                    params.put("time", (new Date().toString()));
-                    params.put("image", userImage);
+                    params.put(IMAGE_UPLOAD_PARAM, IMAGE_UPLOAD_PARAM_ACTION);
+                    params.put(IMAGE_UPLOAD_PARAM_PARAMETER_TIME, (new Date().toString()));
+                    params.put(IMAGE_UPLOAD_PARAM_PARAMETER_IMAGE, userImage);
 
                     return params;
                 }
