@@ -73,8 +73,8 @@ public class DeliveryDashboardListAdapter extends BaseAdapter {
 
         viewHolder.orderNo.setText("Order no: " + reportArrayList.get(position).getOrderNumber());
         viewHolder.status.setText("Status: " + reportArrayList.get(position).getStatus());
-        viewHolder.orderDate.setText("Status: " + reportArrayList.get(position).getOrderDate());
-        viewHolder.deliveryDate.setText("Status: " + reportArrayList.get(position).getDeliveryDate());
+        viewHolder.orderDate.setText("Order Date: " + reportArrayList.get(position).getOrderDate());
+        viewHolder.deliveryDate.setText("Delivery Date: " + reportArrayList.get(position).getDeliveryDate());
 
         return convertView;
     }
