@@ -248,6 +248,7 @@ public class DeliveryDashboard extends Activity {
                 }
             }
         });
+        deliveryDashboardListAdapter = new DeliveryDashboardListAdapter(DeliveryDashboard.this, reportArrayList);
         deliveryDashboardListAdapter.notifyDataSetChanged();
     }
 
