@@ -62,9 +62,9 @@ public class DeliveryDashboard extends Activity {
     private ArrayList<String> reportStatusList;
     private ArrayAdapter<String> arrayAdapter;
     private ToasterMessage toasterMessage;
-    private DataLoadFromSheet dataLoadFromSheet;
-    private ArrayList<String> orderList;
-    private ArrayList<String> statusList;
+//    private DataLoadFromSheet dataLoadFromSheet;
+//    private ArrayList<String> orderList;
+//    private ArrayList<String> statusList;
     boolean flag = false;
     private DeliveryDashboardListAdapter deliveryDashboardListAdapter;
 
@@ -78,12 +78,12 @@ public class DeliveryDashboard extends Activity {
         email =  (TextView) findViewById(R.id.dashboard_user_email);
         address =  (TextView) findViewById(R.id.dashboard_user_address);
         reportList = findViewById(R.id.dashboard_order_list);
-        dataLoadFromSheet = new DataLoadFromSheet();
+//        dataLoadFromSheet = new DataLoadFromSheet();
         toasterMessage = new ToasterMessage();
         reportOrderNumbersList = new ArrayList<>();
         reportStatusList = new ArrayList<>();
-        orderList = new ArrayList<>();
-        statusList = new ArrayList<>();
+//        orderList = new ArrayList<>();
+//        statusList = new ArrayList<>();
         reportArrayList = new ArrayList<>();
 
         setUserInformation();
@@ -118,13 +118,11 @@ public class DeliveryDashboard extends Activity {
     }
 
     private void loadOrderFromDB() {
-        for(int i=0; i< reportArrayList.size(); i++) {
-            orderList.add(reportArrayList.get(i).getOrderNumber());
-            statusList.add(reportArrayList.get(i).getStatus());
-        }
-//        arrayAdapter = new ArrayAdapter<String>(DeliveryDashboard.this, android.R.layout.simple_list_item_1, orderList);
-//        reportList.setAdapter(arrayAdapter);
-        deliveryDashboardListAdapter = new DeliveryDashboardListAdapter(DeliveryDashboard.this, orderList, statusList);
+//        for(int i=0; i< reportArrayList.size(); i++) {
+//            orderList.add(reportArrayList.get(i).getOrderNumber());
+//            statusList.add(reportArrayList.get(i).getStatus());
+//        }
+        deliveryDashboardListAdapter = new DeliveryDashboardListAdapter(DeliveryDashboard.this, reportArrayList);
         reportList.setAdapter(deliveryDashboardListAdapter);
         orderNumberClickListener(reportList);
     }
@@ -181,9 +179,7 @@ public class DeliveryDashboard extends Activity {
                                     }
                                 }
                             }
-//                            arrayAdapter = new ArrayAdapter<String>(DeliveryDashboard.this, android.R.layout.simple_list_item_1, reportOrderNumbersList);
-//                            reportList.setAdapter(arrayAdapter);
-                            deliveryDashboardListAdapter = new DeliveryDashboardListAdapter(DeliveryDashboard.this, reportOrderNumbersList, reportStatusList);
+                            deliveryDashboardListAdapter = new DeliveryDashboardListAdapter(DeliveryDashboard.this, reportArrayList);
                             reportList.setAdapter(deliveryDashboardListAdapter);
                             orderNumberClickListener(reportList);
                             loading.dismiss();

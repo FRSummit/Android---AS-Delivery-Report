@@ -20,18 +20,24 @@ import java.util.ArrayList;
 public class DeliveryDashboardListAdapter extends BaseAdapter {
 
     Context context;
-    private final ArrayList<String> orderNumber;
-    private final ArrayList<String> status;
+//    private final ArrayList<String> orderNumber;
+//    private final ArrayList<String> status;
+    private final ArrayList<Report> reportArrayList;
 
-    public DeliveryDashboardListAdapter(Context context, ArrayList<String> orderNumber, ArrayList<String> status){
+//    public DeliveryDashboardListAdapter(Context context, ArrayList<String> orderNumber, ArrayList<String> status){
+//        this.context = context;
+//        this.orderNumber = orderNumber;
+//        this.status = status;
+//    }
+
+    public DeliveryDashboardListAdapter(Context context, ArrayList<Report> reportArrayList){
         this.context = context;
-        this.orderNumber = orderNumber;
-        this.status = status;
+        this.reportArrayList = reportArrayList;
     }
 
     @Override
     public int getCount() {
-        return orderNumber.size();
+        return reportArrayList.size();
     }
 
     @Override
@@ -56,6 +62,8 @@ public class DeliveryDashboardListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.single_list_item, parent, false);
             viewHolder.orderNo = (TextView) convertView.findViewById(R.id.single_list_item_order_number);
             viewHolder.status = (TextView) convertView.findViewById(R.id.single_list_item_status);
+            viewHolder.orderDate = (TextView) convertView.findViewById(R.id.single_list_item_order_date);
+            viewHolder.deliveryDate = (TextView) convertView.findViewById(R.id.single_list_item_delivery_date);
             result = convertView;
             convertView.setTag(viewHolder);
         } else {
@@ -63,8 +71,10 @@ public class DeliveryDashboardListAdapter extends BaseAdapter {
             result = convertView;
         }
 
-        viewHolder.orderNo.setText("Order no: " + orderNumber.get(position));
-        viewHolder.status.setText("Status: " + status.get(position));
+        viewHolder.orderNo.setText("Order no: " + reportArrayList.get(position).getOrderNumber());
+        viewHolder.status.setText("Status: " + reportArrayList.get(position).getStatus());
+        viewHolder.orderDate.setText("Status: " + reportArrayList.get(position).getOrderDate());
+        viewHolder.deliveryDate.setText("Status: " + reportArrayList.get(position).getDeliveryDate());
 
         return convertView;
     }
@@ -72,5 +82,7 @@ public class DeliveryDashboardListAdapter extends BaseAdapter {
     private static class ViewHolder {
         TextView orderNo;
         TextView status;
+        TextView orderDate;
+        TextView deliveryDate;
     }
 }
