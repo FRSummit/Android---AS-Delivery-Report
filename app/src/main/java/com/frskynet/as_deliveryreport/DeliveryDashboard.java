@@ -224,6 +224,10 @@ public class DeliveryDashboard extends Activity {
         changeActivity(loading);
     }
 
+    public void sortClickHandler(View view) {
+        sortByOrderNo();
+    }
+
     public void sortByOrderNo() {
         Collections.sort(reportArrayList, new Comparator<Report>() {
             @Override
