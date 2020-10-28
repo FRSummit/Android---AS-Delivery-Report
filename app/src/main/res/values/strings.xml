@@ -4,17 +4,21 @@
 
     <string name="main_text">Delivery Management System</string>
 
-    <string name="delivery_report_on_behalf_of_text">Raise this request on behalf of</string>
+    <string name="delivery_report_customer_name">Customer name</string>
+    <string name="delivery_report_customer_name_override">Update Customer name</string>
     <string name="delivery_report_on_behalf_of_input_hint">F R Summit</string>
     <string name="delivery_report_order_number_text">Order number</string>
+    <string name="delivery_report_order_number_text_override">Update Order number</string>
     <string name="delivery_report_order_number_input_hint">0123456</string>
     <string name="delivery_report_order_by_text">Order by</string>
+    <string name="delivery_report_order_by_text_override">Update Order by</string>
     <string name="delivery_report_order_by_input_hint">F R Summit</string>
     <string name="delivery_report_order_date_text">Order date</string>
     <string name="delivery_report_order_date_input_hint">21st October, 2020</string>
     <string name="delivery_report_delivery_date_text">Delivery date</string>
     <string name="delivery_report_delivery_date_input_hint">21st October, 2020</string>
     <string name="delivery_report_delivery_to_name_text">Delivery to name</string>
+    <string name="delivery_report_delivery_to_name_text_override">Update Delivery to name</string>
     <string name="delivery_report_delivery_to_name_input_hint">F R Summit</string>
     <string name="delivery_report_status_text">Status</string>
     <string name="delivery_report_status_input_hint">Order status</string>

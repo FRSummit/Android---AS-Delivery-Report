@@ -26,6 +26,7 @@
         <activity android:name=".SignatureUpload" />
         <activity android:name=".DeliveryReport" />
         <activity android:name=".MainActivity">
+<!--        <activity android:name=".DeliveryReport">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

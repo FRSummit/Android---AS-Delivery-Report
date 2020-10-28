@@ -40,30 +40,47 @@
                 android:padding="6dp"
                 android:gravity="left">
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/delivery_report_on_behalf_of_section"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/delivery_report_customer_name"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:padding="15dp"
-                        android:hint="@string/delivery_report_on_behalf_of_text"
+                        android:hint="@string/delivery_report_customer_name"
                         android:textSize="18dp"
-                        android:textColor="@color/input_text_color"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_ORIGINAL_COLOR"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:background="@drawable/et_custom"/>
+
+                    <EditText
+                        android:id="@+id/delivery_report_customer_name_override"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:padding="15dp"
+                        android:hint="@string/delivery_report_customer_name_override"
+                        android:textSize="18dp"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_COLOR"
                         android:ems="10"
                         android:inputType="text"
                         android:background="@drawable/et_custom"/>
-                </RelativeLayout>
+                </LinearLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/delivery_report_order_number_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/delivery_report_on_behalf_of_section">
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/delivery_report_order_number_input"
@@ -72,18 +89,34 @@
                         android:padding="15dp"
                         android:hint="@string/delivery_report_order_number_text"
                         android:textSize="18dp"
-                        android:textColor="@color/input_text_color"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_ORIGINAL_COLOR"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:background="@drawable/et_custom"/>
+
+                    <EditText
+                        android:id="@+id/delivery_report_order_number_input_override"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:padding="15dp"
+                        android:hint="@string/delivery_report_order_number_text_override"
+                        android:textSize="18dp"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_COLOR"
                         android:ems="10"
                         android:inputType="text"
                         android:background="@drawable/et_custom"/>
-                </RelativeLayout>
+                </LinearLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/delivery_report_order_by_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/delivery_report_order_number_section">
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/delivery_report_order_by_input"
@@ -92,19 +125,35 @@
                         android:padding="15dp"
                         android:hint="@string/delivery_report_order_by_text"
                         android:textSize="18dp"
-                        android:textColor="@color/input_text_color"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_ORIGINAL_COLOR"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:background="@drawable/et_custom"/>
+
+                    <EditText
+                        android:id="@+id/delivery_report_order_by_input_override"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:padding="15dp"
+                        android:hint="@string/delivery_report_order_by_text_override"
+                        android:textSize="18dp"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_COLOR"
                         android:ems="10"
                         android:inputType="text"
                         android:background="@drawable/et_custom"/>
-                </RelativeLayout>
+                </LinearLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/delivery_report_order_date_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/et_custom"
-                    android:layout_below="@+id/delivery_report_order_by_section">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/delivery_report_order_date_text"
@@ -114,9 +163,9 @@
                         android:paddingTop="6dp"
                         android:text="@string/delivery_report_order_date_text"
                         android:textSize="18dp"
-                        android:textColor="@color/input_text_color_2"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_COLOR"
                         android:drawablePadding="10dp"/>
-
 
                     <DatePicker
                         android:id="@+id/delivery_report_order_date"
@@ -125,15 +174,15 @@
                         android:datePickerMode="spinner"
                         android:calendarViewShown="false"
                         android:layout_below="@+id/delivery_report_order_date_text"/>
-                </RelativeLayout>
+                </LinearLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/delivery_report_delivery_date_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/et_custom"
-                    android:layout_below="@+id/delivery_report_order_date_section">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/delivery_report_delivery_date_text"
@@ -143,9 +192,9 @@
                         android:paddingTop="6dp"
                         android:text="@string/delivery_report_delivery_date_text"
                         android:textSize="18dp"
-                        android:textColor="@color/input_text_color_2"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_COLOR"
                         android:drawablePadding="10dp"/>
-
 
                     <DatePicker
                         android:id="@+id/delivery_report_delivery_date"
@@ -154,14 +203,14 @@
                         android:datePickerMode="spinner"
                         android:calendarViewShown="false"
                         android:layout_below="@+id/delivery_report_delivery_date_text"/>
-                </RelativeLayout>
+                </LinearLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/delivery_report_delivered_to_name_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/delivery_report_delivery_date_section">
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/delivery_report_delivered_to_input"
@@ -170,18 +219,34 @@
                         android:padding="15dp"
                         android:hint="@string/delivery_report_delivery_to_name_text"
                         android:textSize="18dp"
-                        android:textColor="@color/input_text_color"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_ORIGINAL_COLOR"
+                        android:ems="10"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:background="@drawable/et_custom"/>
+
+                    <EditText
+                        android:id="@+id/delivery_report_delivered_to_input_override"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:padding="15dp"
+                        android:hint="@string/delivery_report_delivery_to_name_text_override"
+                        android:textSize="18dp"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_COLOR"
                         android:ems="10"
                         android:inputType="text"
                         android:background="@drawable/et_custom"/>
-                </RelativeLayout>
+                </LinearLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/delivery_report_status_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/delivery_report_delivered_to_name_section">
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/delivery_report_status_input"
@@ -190,18 +255,32 @@
                         android:padding="15dp"
                         android:hint="@string/delivery_report_status_input_hint"
                         android:textSize="18dp"
-                        android:textColor="@color/input_text_color"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_COLOR"
                         android:ems="10"
                         android:inputType="text"
+                        android:enabled="false"
                         android:background="@drawable/et_custom"/>
-                </RelativeLayout>
 
-                <RelativeLayout
+                    <Spinner
+                        android:id="@+id/delivery_report_status_input_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/WHITE"
+                        android:textSize="18dp"
+                        android:textAllCaps="false"
+                        android:textAlignment="center"
+                        android:background="@drawable/ripple_transparent_background"
+                        android:includeFontPadding="false"/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/delivery_report_comment_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_below="@+id/delivery_report_status_section">
+                    android:orientation="horizontal">
 
                     <EditText
                         android:id="@+id/delivery_report_comment_input"
@@ -210,11 +289,12 @@
                         android:padding="15dp"
                         android:hint="@string/delivery_report_comment_text"
                         android:textSize="18dp"
-                        android:textColor="@color/input_text_color"
+                        android:textColor="@color/WHITE"
+                        android:textColorHint="@color/INPUT_HINT_COLOR"
                         android:ems="10"
                         android:inputType="text"
                         android:background="@drawable/et_custom"/>
-                </RelativeLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/delivery_report_submit_section"
@@ -223,9 +303,10 @@
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:weightSum="2"
-                    android:layout_below="@+id/delivery_report_comment_section">
+                    android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/save_report_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/delivery_report_submit_btn_text"
