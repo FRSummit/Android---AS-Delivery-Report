@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.DefaultRetryPolicy;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -64,11 +66,10 @@ public class DeliveryDashboard extends Activity {
     private ArrayList<String> reportStatusList;
     private ArrayAdapter<String> arrayAdapter;
     private ToasterMessage toasterMessage;
-//    private DataLoadFromSheet dataLoadFromSheet;
-//    private ArrayList<String> orderList;
-//    private ArrayList<String> statusList;
     boolean flag = false;
     private DeliveryDashboardListAdapter deliveryDashboardListAdapter;
+    private Spinner spinner;
+    private List<String> sortList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +81,25 @@ public class DeliveryDashboard extends Activity {
         email =  (TextView) findViewById(R.id.dashboard_user_email);
         address =  (TextView) findViewById(R.id.dashboard_user_address);
         reportList = findViewById(R.id.dashboard_order_list);
-//        dataLoadFromSheet = new DataLoadFromSheet();
         toasterMessage = new ToasterMessage();
         reportOrderNumbersList = new ArrayList<>();
         reportStatusList = new ArrayList<>();
-//        orderList = new ArrayList<>();
-//        statusList = new ArrayList<>();
         reportArrayList = new ArrayList<>();
+        spinner = (Spinner) findViewById(R.id.sort_spinner);
+
+        sortSpinnerItems();
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                sortHandler(sortList.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                Toast.makeText(DeliveryDashboard.this, "Nothing Select", Toast.LENGTH_LONG).show();
+            }
+
+        });
 
         setUserInformation();
         reportArrayList = dbHelper.getAllDeliveryReportList();
@@ -120,10 +133,6 @@ public class DeliveryDashboard extends Activity {
     }
 
     private void loadOrderFromDB() {
-//        for(int i=0; i< reportArrayList.size(); i++) {
-//            orderList.add(reportArrayList.get(i).getOrderNumber());
-//            statusList.add(reportArrayList.get(i).getStatus());
-//        }
         deliveryDashboardListAdapter = new DeliveryDashboardListAdapter(DeliveryDashboard.this, reportArrayList);
         reportList.setAdapter(deliveryDashboardListAdapter);
         orderNumberClickListener(reportList);
@@ -224,18 +233,34 @@ public class DeliveryDashboard extends Activity {
         changeActivity(loading);
     }
 
-    public void sortClickHandler(View view) {
-        sortByOrderNo();
-    }
-
-    public void sortByOrderNo() {
+    public void sortHandler(final String sortItem) {
         Collections.sort(reportArrayList, new Comparator<Report>() {
             @Override
             public int compare(Report o1, Report o2) {
-                return o1.getOrderNumber().compareTo(o2.getOrderNumber());
+                if(sortItem.equals("Order Number")) {
+                    return o1.getOrderNumber().compareTo(o2.getOrderNumber());
+                }  else if(sortItem.equals("Order Status")) {
+                    return o2.getStatus().compareTo(o1.getStatus());
+                } else {
+                    return o1.getOrderNumber().compareTo(o2.getOrderNumber());
+                }
             }
         });
         deliveryDashboardListAdapter.notifyDataSetChanged();
+    }
+
+    private void sortSpinnerItems() {
+        sortList = new ArrayList<>();
+        sortList.add("Default Sort");
+        sortList.add("Order Number");
+        sortList.add("Order Status");
+        spinnerArrayAdapter(spinner, sortList);
+    }
+
+    public void spinnerArrayAdapter(Spinner spinner, List<String> list) {
+        ArrayAdapter<String> sortAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, list);
+        sortAdapter.setDropDownViewResource(R.layout.spinner_item);
+        spinner.setAdapter(sortAdapter);
     }
 
     private void changeActivity(final ProgressDialog loading) {
