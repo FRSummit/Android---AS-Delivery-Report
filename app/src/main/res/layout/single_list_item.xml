@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp"
+    android:padding="4dp"
     android:layout_marginTop="10dp"
     android:background="@drawable/ripple_transparent_background">
 
@@ -18,11 +18,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="AMS"
-            android:gravity="center"
             android:fontFamily="@font/league_spartan_regular"
             android:textSize="30dp"
             android:textColor="@color/WHITE"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
@@ -37,18 +37,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Order no: 12345"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:textSize="18dp"
             android:textColor="@color/WHITE"
             android:textStyle="bold"
-            android:layout_alignParentTop="true" />
+            android:includeFontPadding="false" />
 
         <TextView
             android:id="@+id/single_list_item_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Status: Pending"
+            android:fontFamily="@font/roboto_condensed_regular"
             android:textSize="12dp"
             android:textColor="@color/WHITE"
+            android:includeFontPadding="false"
             android:layout_below="@+id/single_list_item_order_number"/>
 
         <LinearLayout
@@ -63,18 +66,22 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Order Date: 20-20-20"
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:textSize="12dp"
                 android:textColor="@color/WHITE"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:includeFontPadding="false"/>
 
             <TextView
                 android:id="@+id/single_list_item_delivery_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Delivery Date: 20-20-20"
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:textSize="12dp"
                 android:textColor="@color/WHITE"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:includeFontPadding="false"/>
 
         </LinearLayout>
 

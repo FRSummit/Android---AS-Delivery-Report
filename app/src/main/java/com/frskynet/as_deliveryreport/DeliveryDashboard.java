@@ -24,6 +24,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -220,6 +222,16 @@ public class DeliveryDashboard extends Activity {
         final ProgressDialog loading = ProgressDialog.show(this,"Processing...","Please wait...",false,false);
         dbHelper.removeAllTable();
         changeActivity(loading);
+    }
+
+    public void sortByOrderNo() {
+        Collections.sort(reportArrayList, new Comparator<Report>() {
+            @Override
+            public int compare(Report o1, Report o2) {
+                return o1.getOrderNumber().compareTo(o2.getOrderNumber());
+            }
+        });
+        deliveryDashboardListAdapter.notifyDataSetChanged();
     }
 
     private void changeActivity(final ProgressDialog loading) {
