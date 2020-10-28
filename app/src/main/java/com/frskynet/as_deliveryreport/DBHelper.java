@@ -98,7 +98,7 @@ class DBHelper extends SQLiteOpenHelper {
     public void updateDeliveryReport(Report report) {
         String QUERY = "UPDATE DELIVERY_REPORT SET "
                                 + "CUSTOMER_NAME_OVERRIDE = " + "'" + report.getCustomerNameOverride() + "', "
-                                + "ORDER_NUMBER_OVERRIDE = " + "'" + report.getOrderDateOverride() + "', "
+                                + "ORDER_NUMBER_OVERRIDE = " + "'" + report.getOrderNumberOverride() + "', "
                                 + "ORDER_BY_OVERRIDE = " + "'" + report.getOrderByOverride() + "', "
                                 + "ORDER_DATE_OVERRIDE = " + "'" + report.getOrderDateOverride() + "', "
                                 + "DELIVERY_DATE_OVERRIDE = " + "'" + report.getDeliveryDateOverride() + "', "

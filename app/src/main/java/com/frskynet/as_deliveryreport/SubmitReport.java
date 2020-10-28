@@ -113,7 +113,7 @@ public class SubmitReport extends Activity {
                 cName.setText(report.getCustomerName());
                 cNameOr.setText(report.getCustomerNameOverride());
                 orderNo.setText(report.getOrderNumber());
-                orderNoOr.setText(report.getCustomerNameOverride());
+                orderNoOr.setText(report.getOrderNumberOverride());
                 OrderBy.setText(report.getOrderBy());
                 OrderByOr.setText(report.getOrderByOverride());
                 orderDate.setText(report.getOrderDate());
