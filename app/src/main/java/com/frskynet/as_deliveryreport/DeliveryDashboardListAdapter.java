@@ -62,6 +62,8 @@ public class DeliveryDashboardListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.single_list_item, parent, false);
             viewHolder.orderNo = (TextView) convertView.findViewById(R.id.single_list_item_order_number);
             viewHolder.status = (TextView) convertView.findViewById(R.id.single_list_item_status);
+            viewHolder.customerName = (TextView) convertView.findViewById(R.id.single_list_item_customer_name);
+            viewHolder.customerNameOverride = (TextView) convertView.findViewById(R.id.single_list_item_customer_name_override);
             viewHolder.orderDate = (TextView) convertView.findViewById(R.id.single_list_item_order_date);
             viewHolder.deliveryDate = (TextView) convertView.findViewById(R.id.single_list_item_delivery_date);
             result = convertView;
@@ -73,6 +75,8 @@ public class DeliveryDashboardListAdapter extends BaseAdapter {
 
         viewHolder.orderNo.setText("Order no: " + reportArrayList.get(position).getOrderNumber());
         viewHolder.status.setText("Status: " + reportArrayList.get(position).getStatus());
+        viewHolder.customerName.setText("Customer: " + reportArrayList.get(position).getCustomerName());
+        viewHolder.customerNameOverride.setText("Customer #: " + reportArrayList.get(position).getCustomerNameOverride());
         viewHolder.orderDate.setText("Order Date: " + reportArrayList.get(position).getOrderDate());
         viewHolder.deliveryDate.setText("Delivery Date: " + reportArrayList.get(position).getDeliveryDate());
 
@@ -82,6 +86,8 @@ public class DeliveryDashboardListAdapter extends BaseAdapter {
     private static class ViewHolder {
         TextView orderNo;
         TextView status;
+        TextView customerName;
+        TextView customerNameOverride;
         TextView orderDate;
         TextView deliveryDate;
     }

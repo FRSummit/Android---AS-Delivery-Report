@@ -32,28 +32,70 @@
         android:layout_marginLeft="10dp"
         android:layout_gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/single_list_item_order_number"
+        <!--Order number & Status-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Order no: 12345"
-            android:fontFamily="@font/roboto_condensed_regular"
-            android:textSize="18dp"
-            android:textColor="@color/WHITE"
-            android:textStyle="bold"
-            android:includeFontPadding="false" />
+            android:orientation="horizontal"
+            android:layout_below="@+id/single_list_item_status"
+            android:weightSum="2">
 
-        <TextView
-            android:id="@+id/single_list_item_status"
+            <TextView
+                android:id="@+id/single_list_item_order_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Order no: 12345"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:textSize="18dp"
+                android:textColor="@color/WHITE"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:includeFontPadding="false"/>
+
+            <TextView
+                android:id="@+id/single_list_item_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Status: Pending"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:textSize="12dp"
+                android:textColor="@color/WHITE"
+                android:layout_weight="1"
+                android:includeFontPadding="false"/>
+        </LinearLayout>
+
+        <!--Customer name-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Status: Pending"
-            android:fontFamily="@font/roboto_condensed_regular"
-            android:textSize="12dp"
-            android:textColor="@color/WHITE"
-            android:includeFontPadding="false"
-            android:layout_below="@+id/single_list_item_order_number"/>
+            android:orientation="horizontal"
+            android:layout_below="@+id/single_list_item_status"
+            android:weightSum="2">
 
+            <TextView
+                android:id="@+id/single_list_item_customer_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Customer: F R Summit"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:textSize="12dp"
+                android:textColor="@color/WHITE"
+                android:layout_weight="1"
+                android:includeFontPadding="false"/>
+
+            <TextView
+                android:id="@+id/single_list_item_customer_name_override"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Customer #: F. R. Summit"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:textSize="12dp"
+                android:textColor="@color/WHITE"
+                android:layout_weight="1"
+                android:includeFontPadding="false"/>
+        </LinearLayout>
+
+        <!--Order & Delivery Date-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,7 +124,6 @@
                 android:textColor="@color/WHITE"
                 android:layout_weight="1"
                 android:includeFontPadding="false"/>
-
         </LinearLayout>
 
     </LinearLayout>

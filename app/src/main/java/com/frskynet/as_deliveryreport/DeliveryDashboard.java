@@ -239,7 +239,9 @@ public class DeliveryDashboard extends Activity {
             public int compare(Report o1, Report o2) {
                 if(sortItem.equals("Order Number")) {
                     return o1.getOrderNumber().compareTo(o2.getOrderNumber());
-                }  else if(sortItem.equals("Order Status")) {
+                }  else if(sortItem.equals("Customer Name")) {
+                    return o1.getCustomerName().compareTo(o2.getCustomerName());
+                }   else if(sortItem.equals("Order Status")) {
                     return o2.getStatus().compareTo(o1.getStatus());
                 } else {
                     return o1.getOrderNumber().compareTo(o2.getOrderNumber());
@@ -253,6 +255,7 @@ public class DeliveryDashboard extends Activity {
         sortList = new ArrayList<>();
         sortList.add("Default Sort");
         sortList.add("Order Number");
+        sortList.add("Customer Name");
         sortList.add("Order Status");
         spinnerArrayAdapter(spinner, sortList);
     }
