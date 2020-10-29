@@ -146,6 +146,7 @@ public class DeliveryDashboard extends Activity {
     public void orderLoad (final String deliveryPartnerId) {
         reportOrderNumbersList.clear();
         reportStatusList.clear();
+        reportArrayList.clear();
         dbHelper.removeAllFromDeliveryReport();
         final ProgressDialog loading = ProgressDialog.show(this,"Your order is loading","Please wait until loading process finish...",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, GET_DELIVERY_REPORT_LIST_URL,

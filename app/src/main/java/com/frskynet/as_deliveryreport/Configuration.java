@@ -7,7 +7,8 @@ package com.frskynet.as_deliveryreport;
  */
 public class Configuration {
 
-    public static final String APP_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwWoc-iUdxs1zjHqXivBse1B9g_eFs_8Gxz8zaDAWesmrGDxavd/exec";
+//    public static final String APP_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwWoc-iUdxs1zjHqXivBse1B9g_eFs_8Gxz8zaDAWesmrGDxavd/exec";
+    public static final String APP_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyHa6w13Yn4rWE9CPZ1F64dOVDM2dG7a73SFuIzsMKxgQYKmQ0/exec";
     public static final String ADD_REPORT_URL = APP_SCRIPT_WEB_APP_URL;
     public static final String GET_DELIVERY_PARTNER_URL = APP_SCRIPT_WEB_APP_URL+"?action=readAllDeliveryPartner";
     public static final String GET_DELIVERY_REPORT_LIST_URL = APP_SCRIPT_WEB_APP_URL+"?action=readAllDeliveryReport";
