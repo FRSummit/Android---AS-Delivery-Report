@@ -39,7 +39,7 @@ import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_P
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_STATUS;
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_IMAGE_URL;
 import static com.frskynet.as_deliveryreport.Configuration.KEY_DELIVERY_REPORT_SIGNATURE_URL;
-import static com.frskynet.as_deliveryreport.Configuration.SIGNATURE_UPLOAD_TO_REPORT_SUBMIT;
+import static com.frskynet.as_deliveryreport.Configuration.INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER;
 
 public class SubmitReport extends Activity {
     private String intentExtra;
@@ -73,7 +73,7 @@ public class SubmitReport extends Activity {
         Intent intentText = getIntent();
         Bundle extraText = intentText.getExtras();
         if(extraText != null) {
-            intentExtra = (String) extraText.get(SIGNATURE_UPLOAD_TO_REPORT_SUBMIT);
+            intentExtra = (String) extraText.get(INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER);
         }
 
 

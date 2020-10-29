@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.frskynet.as_deliveryreport.Configuration.INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER;
-import static com.frskynet.as_deliveryreport.Configuration.DELIVERY_REPORT_TO_IMAGE_UPLOAD;
 
 public class DeliveryReport extends Activity {
     private EditText customerName;
@@ -171,10 +170,17 @@ public class DeliveryReport extends Activity {
 
         dbHelper.updateDeliveryReport(report);
 //        saveDateToSpreadsheet(report);
-        Intent intent = new Intent(this, ReportImageUpload.class);
-        intent.putExtra(DELIVERY_REPORT_TO_IMAGE_UPLOAD, report.getId());
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        if(spinner.getSelectedItem().toString().equals("Delivered")) {
+            Intent intent = new Intent(this, ReportImageUpload.class);
+            intent.putExtra(INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER, report.getId());
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        } else {
+            Intent intent = new Intent(this, SubmitReport.class);
+            intent.putExtra(INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER, report.getId());
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }
     }
 
     public void deliveryReportCancelHandler(View view) {

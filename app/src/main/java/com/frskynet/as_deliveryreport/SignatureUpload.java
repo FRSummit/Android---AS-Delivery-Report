@@ -41,8 +41,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.frskynet.as_deliveryreport.Configuration.APP_SCRIPT_WEB_APP_URL;
-import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD;
-import static com.frskynet.as_deliveryreport.Configuration.SIGNATURE_UPLOAD_TO_REPORT_SUBMIT;
+import static com.frskynet.as_deliveryreport.Configuration.INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER;
 import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_PARAM;
 import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_PARAM_ACTION;
 import static com.frskynet.as_deliveryreport.Configuration.IMAGE_UPLOAD_PARAM_PARAMETER_TIME;
@@ -73,7 +72,7 @@ public class SignatureUpload extends Activity {
         Intent intentText = getIntent();
         Bundle extraText = intentText.getExtras();
         if(extraText != null) {
-            intentExtra = (String) extraText.get(IMAGE_UPLOAD_TO_SIGNATURE_UPLOAD);
+            intentExtra = (String) extraText.get(INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER);
         }
     }
 
@@ -223,7 +222,7 @@ public class SignatureUpload extends Activity {
 
     private void changeActivity() {
         Intent intent = new Intent(SignatureUpload.this, SubmitReport.class);
-        intent.putExtra(SIGNATURE_UPLOAD_TO_REPORT_SUBMIT, intentExtra);
+        intent.putExtra(INTENT_EXTRA_DELIVERY_DASHBOARD_ORDER_NUMBER, intentExtra);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
